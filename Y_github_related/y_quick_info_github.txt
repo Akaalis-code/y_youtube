@@ -1,0 +1,35 @@
+------ GIT controls from command prompt -- start ------------------------------
+
+
+1) git config --global user.name “[firstname lastname]”
+2) git config --global user.email “[valid-email]”
+3) git config --list 
+
+4) initialize an existing directory as a Git repository
+   git init
+5) Clone an existing Remote repository into local repository
+      git clone <url>
+   Clone a particular branch of repo instead of master into local from remote
+      git clone -b <branch_name> <repo_url>
+
+
+
+GIT can be thought of as below :
+1) Workspace ---> 2) staging area ---> 3) Commited area ---> 4) repository 
+
+  To have changes in 1 to transfer to 2 
+  git add .
+
+  To have changes in 2 to transfer to 3 
+  git commit -m 'commit message'  
+
+  To have changes from 3 to 4
+  git push
+
+  To have changes from 4 to 1 
+  git pull
+
+git diffs
+
+
+------ GIT controls from command prompt -- End ------------------------------

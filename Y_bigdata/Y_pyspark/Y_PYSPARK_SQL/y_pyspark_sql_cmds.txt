@@ -1,0 +1,316 @@
+SPARK -->> 3.x version
+############ Install PYSPARK and find out where the library is installed in  ## START ###################################################################
+
+1) Install pyspark using terminal
+    pip install pyspark 
+
+2) In case you want to see source code for pyspark library and want to open its installed locations , run below python code
+    import pyspark
+    fp=pyspark.__file__
+    print(fp)
+
+3) Find out the "pyspark WEBUI" URL for your sparksessions
+
+    After your SparkSession is running , execute below command inside your python terminal
+        from pyspark.sql import SparkSession
+        ss=SparkSession.builder.getOrCreate()
+        ss.sparkContext.uiWebUrl
+
+############ Install PYSPARK and find out where the library is installed in ## END ###################################################################
+
+
+
+
+
+
+##################### DATA SETUP ## START ###################################################################
+ 
+    from pyspark.sql import SparkSession
+
+    ss=SparkSession.builder.getOrCreate()
+    students_df=ss.createDataFrame( [(1,'rama','physics'),(2,'raju','maths'),(1,'rama','maths')]  ,  ('ID','name','subject'))
+    results_df=ss.createDataFrame( [(1,'physics',94),(2,'maths',95),(1,'maths',90)]  ,  ('ID','subject','marks_scored'))
+
+##################### DATA SETUP ## END ###################################################################
+
+
+
+
+
+
+##################### To see DATAFRAME or its METADATA ## START ###################################################################
+
+1) To see dataframe table
+    df1.show(n)                --->>> "n" will be the first number of rows you want to see
+    df1.show(n,truncate=False) --->>> To show column data without truncating it to any length
+    df1.show(n,truncate=x)     --->>> "x" will be the length of the truncate you need on column values
+
+2) To get schema information of dataframe
+    df1.printSchema()
+
+3) To get only columns of dataframe
+    df1.columns
+
+##################### To see DATAFRAME or its METADATA ## END ###################################################################
+
+
+
+
+
+
+##################### SINGLE DATAFRAME OPERATIONS ## START ###################################################################
+
+###### COULUMN SELECTION
+
+1) SELECT FEW COLUMNS
+
+    1.1) Most used way 
+
+            df1.select("A-col","B-col").show()
+            df1.select(df1["A-col"],df1["B-col"]).show()
+
+            df1.select(df1.A-col,df1.B-col).show()       ---->>> Dont use this syntax
+            Reason : Even though this  " df1.select(df1.A-col,df1.B-col).show() " works for simple column names ,
+                    for A-col it gets confused as if to do A minus col so its better to avoid this syntax
+        
+    1.2) By using col() function
+
+            from pyspark.sql.functions import col
+            df1.select(col("A-col"),col("B-col")).show()
+
+    1.3) select columns by index
+
+            df1.select(df1.columns[2:4]).show(3)
+
+    1.4) Omit some columns from data frame 
+
+            df2 = df1.drop('col1','col2',...,'coln')  ---->>> df1 will still have them 
+            df2 = df1.dropDuplicates()                ---->>> To ddrop duplicates by considering only few columns menton them in paranthesis
+            df2 = df1.dropna()                        ---->>> If any column contains null values drops the entire row
+
+
+2) CHANGE NAMES OF SELECTED COLUMNS
+
+    df3 = df1.select(df1["A-col"].alias("A") , df1["B-col"].alias("B"))
+
+    2.1) In some cases where you are doing aggregate operations and you want to alias the column header
+            which comes as "agg_func(col-c)" , you could use either of the below two ways (preferably second)
+
+            2.1.1) First way :
+
+                            df_temp = df1.groupBy('col-A','col-B').max('col-C').show()
+                            df2 = df_temp.select(df_temp['max(col-C)'].alias('your_preferred_name'))
+
+            2.1.2) In case you dont want to create df2 just to rename , and do renaming in one line , then use below :
+
+                            from pyspark.sql.functions import col
+                            df1.groupBy('col-A','col-B').max('col-C').select(col('max(col-C)').alias('your-preferred-name')).show()
+
+3) APPLY DISTINCT 
+
+    df1.select(df1['A-col'] , df1['B-col']).distinct().show()
+
+
+
+###### AGGREGATE FUNCTIONS
+Note : Import this module to have these aggregate functions running
+       from pyspark.sql.functions import *
+
+1) Sum of values in a column :
+
+    df1.groupBy(df1['col-A'],df1['col-B']).sum('col-c','col-d').show()   ----->>>> Note : its not col-c+col-d it adds up all values of col-c and col-d in themselves
+
+2) count of values in a column :
+
+    df1.groupBy(df1['col-A'],df1['col-B']).count().show()
+
+3) Minimum and Maximum of a column
+
+    df1.groupBy(df1['col-A'],df1['col-B']).min('col-c').show()
+    df1.groupBy(df1['col-A'],df1['col-B']).max('col-c').show()
+
+
+###### WINDOW FUNCTIONS
+Problem statement :: when you are doing aggregate operations you will be able to only retrive the columns 
+                     on which groupby was performed and the aggregate function column .
+                     But in case if you also want to display some other non group by columns you would have to 
+                     go through the hastle of joining resultant dataframe with source data frame and then obtain
+                     those non groupby columns 
+
+Solution given by WINDOW functions :: Even though you are selecting multiple columns , it lets you decide on 
+                                      which window of columns you want to apply your aggregate functions.
+                                      and also since we have other columns along with group by columns , the output
+                                      will come with all the number of rows as previous to this operation
+
+
+0) Import below modules and create a window over certain columns as below :
+
+    from pyspark.sql.window import Window
+    from pyspark.sql.functions import *
+    windowSpec  = Window.partitionBy("col-A").orderBy("col-B")
+
+1) Row number over certain window :
+
+    df1.withColumn("row_number",row_number().over(windowSpec))
+
+2) Ranking data in a partitions created by "col-A" based on values in "col-B"
+
+    df1.withColumn("rank",rank().over(windowSpec))
+
+3) If you want to use aggregate functions along with window functionality
+
+    df1.withColumn("row",row_number().over(windowSpec)) \
+        .withColumn("avg", avg(col("salary")).over(windowSpecAgg)) \
+        .withColumn("sum", sum(col("salary")).over(windowSpecAgg)) \
+        .withColumn("min", min(col("salary")).over(windowSpecAgg)) \
+        .withColumn("max", max(col("salary")).over(windowSpecAgg)) \
+        .where(col("row")==1).select("department","avg","sum","min","max") \
+        .show()
+
+
+###### FILTER DATA
+
+1) Filter based on a condition :
+        df1.filter("col-a">30) 
+
+2) Where is an alias for filter
+
+##################### SINGLE DATAFRAME OPERATIONS  ## END ###################################################################
+
+
+
+
+
+
+##################### Data frame COLUMN Data types  ## START ###################################################################
+
+1) Import statement to get DATA TYPES
+    from pyspark.sql.types import *
+
+2) To change Column types from one to another 
+    df2 = df1.withColumn("col_A",df1["col_A"].cast(StringType())) 
+
+
+
+
+##################### Data frame COLUMN Data types  ## END ###################################################################
+
+
+
+
+
+
+
+##################### Run actual Sql queries in pyspqrk ## START ###################################################################
+
+from pyspark.sql import SparkSession
+ss = SparkSession.builder.appName("Running SQL Queries in PySpark").getOrCreate()
+
+my_df = ss.read.csv("Data path")
+my_df.createOrReplaceTempView("my_df_temp_view")
+
+output_as_df = ss.sql("select * from my_df_temp_view where some condition")  ---->>> query can be anything inside
+output_as_df.show()
+
+##################### Run actual Sql queries in pyspqrk  ## END ###################################################################
+
+
+
+
+
+
+##################### DATA frame collect() vs coallesce() vs cache() ## START ###################################################################
+
+1) df.cache() --->>> what does it do 
+        Suppose we have a "data frame transformation" that is is being invoked during multiple "dataframe actions" 
+        then we can make that data frame result cached in memory with out having to go through same "tranformation" 
+        multiple times
+
+2) df.collect() --->>> what does it do  (Below explanation could be wrong)
+   df.collectList() ---->>> outputs as LIST while above gives as ARRAy
+        As spark run the computation code or logic seperately in all executor nodes for the data it has there ,
+        Some times there could be a scenario where the logic needs to take a decision based on data collectively 
+        as a whole and we have to collect data from executor nodes to driver nodes.
+
+        Need to search more for this exact use!
+
+3) df.coalesce(n)  --->>> "n" is number of partitions to reduce to
+        "data frame actions " like write data to CSV often stores data into multiple files based on partitions 
+        sometimes you want it to store in a single file irrespective of partition
+
+##################### DATA frame collect() vs coallesce() vs cache()  ## END ###################################################################
+
+
+
+
+
+
+##################### Performance optimization tools ## START ###################################################################
+
+1) You want to see the entire plan of how the resultant data frame is being created :
+        df1.explain(<mode>) ---->>> replace <mode> with options available or leave empty 
+
+2) Spark uses "catalyst" optimizer which chooses best plan to execute
+3) Could be wrong 
+     Logical Plan - to check syntax and semantics errors and this plan before actually using actual reources
+     Physical plan - based on using actual resources
+##################### Performance optimization tools ## End ###################################################################
+
+
+##################### UDF  ## Start #########################################################################################
+
+1) Import below "udf" library
+
+    from pyspark.sql.functions import udf 
+
+
+    suppose we have below function which needs to be converted to UDF
+
+    def my_func(var1 , var2):
+        your custom operations on var1 and var2
+        .....
+        .....
+        return output_var
+
+2) Create a "udf" using UDF function call 
+
+    NumberUDF = udf(lambda m: my_func(var1 , var2))
+    
+
+
+
+
+
+
+##################### UDF  ## End #########################################################################################
+
+
+
+
+
+##################### JOINS ## START ###################################################################
+
+###### INNER JOIN
+
+
+
+
+###### LEFT JOIN
+
+
+
+
+###### RIGHT JOIN
+
+
+
+
+###### OUTER JOIN
+
+
+
+
+###### CROSS JOIN
+
+
+##################### JOINS ## END ###################################################################
