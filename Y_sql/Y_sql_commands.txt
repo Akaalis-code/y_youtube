@@ -1,3 +1,22 @@
+
+#################### Most important execution order in SQL statements for compiler ## START ###########################################
+
+FROM
+WHERE
+GROUP BY
+HAVING
+SELECT
+ORDER BY
+
+#################### Most important execution order in SQL statements for compiler ## End ###########################################
+
+
+#################### Create statement ## Start ##########################################################################
+
+
+#################### Create statement ## End ##########################################################################
+
+
 SELECT expression 1, expression 2, ...
 aggregate function () 
 OVER (PARTITION BY expression 1 order_clause frame_clause)
