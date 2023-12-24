@@ -23,6 +23,42 @@ SPARK -->> 3.x version
 
 
 
+##################### Quick Theoritical concepts ## START ###################################################################
+
+1) TRANSFORMATIONS and ACTIONS :-
+
+        TRANSFORMATIONS are the operations which defines the computations that need to be performed on data , 
+        but those set of computations are not immediately performed until the momment where the code actually
+        has to show or store the newly computed data 
+
+        ACTIONS are those operations like storing the data into disk or collect the data into the driver node ,
+        These ACTIONS will be done then and there itself ,
+        and ACTIONS make all TRANSFORMATIONS operations to execute at that time.
+
+2) LAZY EVALUATION :-
+        
+        Its a computation strategy where the sequence of expressions will not be executed untill that time when the actual
+        exprssion value or output is needed.
+
+        Pyspark TRANSFORMATIONS are LAZY in nature 
+
+3) DAG [Directed Acyclic(the execution steps are not cyclic) Graph]:-
+
+        It can be thought as a series of steps that the spark has to take to perform a set of TRANSFORMATIONS and ACTIONS
+        In simple words its a flow chart for spark to execute the code on data while being aware about data locality
+        and reduced dependency on data shuffling between data nodes.
+
+4) Driver and Executor programs :-
+
+ 
+
+##################### Quick Theoritical concepts ## START ###################################################################
+
+
+
+
+
+
 ##################### DATA SETUP ## START ###################################################################
  
     from pyspark.sql import SparkSession
@@ -190,11 +226,7 @@ Solution given by WINDOW functions :: Even though you are selecting multiple col
 2) To change Column types from one to another 
     df2 = df1.withColumn("col_A",df1["col_A"].cast(StringType())) 
 
-
-
-
 ##################### Data frame COLUMN Data types  ## END ###################################################################
-
 
 
 
@@ -209,7 +241,7 @@ ss = SparkSession.builder.appName("Running SQL Queries in PySpark").getOrCreate(
 my_df = ss.read.csv("Data path")
 my_df.createOrReplaceTempView("my_df_temp_view")
 
-output_as_df = ss.sql("select * from my_df_temp_view where some condition")  ---->>> query can be anything inside
+output_as_df = ss.sql("select * from my_df_temp_view where <some_condition>")  ---->>> query can be anything inside
 output_as_df.show()
 
 ##################### Run actual Sql queries in pyspqrk  ## END ###################################################################
@@ -257,32 +289,40 @@ output_as_df.show()
 ##################### Performance optimization tools ## End ###################################################################
 
 
-##################### UDF  ## Start #########################################################################################
-
-1) Import below "udf" library
-
-    from pyspark.sql.functions import udf 
-
-
-    suppose we have below function which needs to be converted to UDF
-
-    def my_func(var1 , var2):
-        your custom operations on var1 and var2
-        .....
-        .....
-        return output_var
-
-2) Create a "udf" using UDF function call 
-
-    NumberUDF = udf(lambda m: my_func(var1 , var2))
-    
 
 
 
 
+##################### UDF (User Defined Functions) ## Start #########################################################################################
+
+1) UDF for pyspark code :
+
+        - Through "UDF decorators"
+
+                from pyspark.sql.functions import udf 
+
+                @udf
+                def my_func(var1 , var2):
+                    your custom operations on var1 and var2
+                    .....
+                    .....
+                    return output_var
+
+                df2 = df1.select(df1[col1] , my_func(df1[col1] , df1[col2]).alias("My_new_column"))
+
+        - Or you can use below way instead of using "UDF decorator"
+
+                my_func_udf = udf(lambda m,n : my_func(m,n))
+                df2 = df1.select(df1[col1] , my_func_udf(df1[col1] , df1[col2]).alias("My_new_column"))
 
 
-##################### UDF  ## End #########################################################################################
+2) UDF to use in SQL queries inside pyspark :
+
+        spark.udf.register("my_func_udf", my_func , <return_type of my_func>)
+        spark.sql("select my_func_udf(Name) from NAME_TABLE2") .show(truncate=False)
+
+##################### UDF (User Defined Functions) ## End #########################################################################################
+
 
 
 
