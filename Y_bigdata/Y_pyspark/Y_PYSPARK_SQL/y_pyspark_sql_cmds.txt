@@ -329,28 +329,47 @@ output_as_df.show()
 
 
 ##################### JOINS ## START ###################################################################
+Suppose if we have two dataframes df1 and df2 
 
 ###### INNER JOIN
+    Returns only the rows with "satisfied conditions" in both DataFrames.
 
-
-
+    df1.join(df2,((<condition 1>)&(<condition n>)),"inner")
 
 ###### LEFT JOIN
+    Returns all rows from the left DataFrame and rows that "satisfied conditions" from the right DataFrame.
 
+    df1.join(df2,((<condition 1>)&(<condition n>)),"left")
 
+###### LEFT SEMI
+    Returns only those rows from the left DataFrame which satisfies conditions with the right DataFrame.
+    It is similar to inner join but the difference is in "COLUMNS" , it takes only left df "COLUMNS" 
+    and ignores right data frame "COLUMNS"
 
+    df1.join(df2,((<condition 1>)&(<condition n>)),"leftsemi")
+
+###### LEFT ANTI
+    Returns only those rows from the left DataFrame which "DOES NOT" satisfies conditions with the right DataFrame.
+    It is opposite to LEFT SEMI in terms of "ROWS" , but this also only chooses "COLUMNS" from left and ignores
+    all right "COLUMNS"
+
+    df1.join(df2,((<condition 1>)&(<condition n>)),"leftanti")
 
 ###### RIGHT JOIN
+    Returns all rows from the RIGHT DataFrame and rows that "satisfied conditions" from the LEFT DataFrame.
 
+    df1.join(df2,((<condition 1>)&(<condition n>)),"right")
 
+###### FULL OUTER JOIN
+    Returns all rows from both DataFrames, including "satisfied and non satisfied conditions".
 
-
-###### OUTER JOIN
-
-
-
+    df1.join(df2,((<condition 1>)&(<condition n>)),"full")
 
 ###### CROSS JOIN
+    Returns all ROWS and COLUMNS of both dataframes by doing cartesian mapping , meaning mapping every ROW of one
+    dataframe with every ROW of other dataframe
 
-
+    df1.join(df2)
+        (or)
+    df1.crossJoin(df2)
 ##################### JOINS ## END ###################################################################
