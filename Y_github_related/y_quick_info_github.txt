@@ -15,7 +15,7 @@
 
 
 GIT can be thought of as below :
-1) Workspace ---> 2) staging area ---> 3) Commited area ---> 4) repository 
+1) Workspace ---> 2) staging area ---> 3) Commited area ---> 4) local repository ---> 5) Remote repository
 
   To have changes in 1 to transfer to 2 
   git add .
