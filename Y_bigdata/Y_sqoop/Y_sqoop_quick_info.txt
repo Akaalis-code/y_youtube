@@ -1,0 +1,54 @@
+1) SQOOP is a tool under HADOOP echo system that helps us transfer data between RDBMS data bases and HADOOP.
+
+2) It can be used as a command line tool or from inside python using (pysqoop) library
+
+3) SQOOP has two important components along with others , they are :
+        SQOOP IMPORT :
+            Import gets data from RDBMS(mysql , oracle , postgres) and can place in HADOOP(SQL-HIVE or NOSQL-HBASE)
+
+        SQOOP EXPORT : !!(Might be wrong need review further)
+            Export can only get data from HADOOP(SQL-HIVE) and place it in RDBMS(mysql , oracle , postgres)
+
+4) In terms of MAP-REDUCE SQOOP is a MAP task , because its just transfering "data as it is" and no calculations 
+   which involves data is being done so no REDUCE task is perfomed
+
+5) As part of Sqoop installation :
+        1- Download and install JAVA and HADOOP (These are multi step processes refer their installation guides)
+        2- Download SQOOP from APACHE official website 
+        3- Extract it 
+        4- Add SQOOP_HOME , HADOOP_HOME other related environment variables inside ".bashrc" and in "sqoop-env.sh" file
+        5- A RDBMS(MYSQL or ORACLE or MS-SQL SERVER) connector JAR needs to be downloaded and placed inside LIB folder of SQOOP directory
+        6- Run "sqoop-version" command from inside sqoop bin unless env variable for bin is added then run from anywhere
+
+
+##################### SQOOP Commands ## START ############################################################################
+0) SQOOP HELP :
+        "sqoop help" command inside terminal gives all the things it can do 
+
+1) SQOOP IMPORT : from RDBMS(mysql , oracle , sql server) to HADOOP (HDFS)
+        sqoop import --connect jdbc:<your_rdbms(mysql or oracle or others)>//<ipaddress>/<database_name>
+                     --username <your_RDBMS_user_name>
+                     --password <your_db_password>
+                     --table <your_RDBMS_table_name>
+                     --target-dir <your_hadoop_related_target_dir>
+                     --m <in_number_of_mappers_you_want_this_to_use>
+                     --where "<specify your usual sql where clause conditions here>"
+
+2) SQOOP EXPORT : from HADOOP (HDFS) to RDBMS(mysql , oracle , sql server)
+        sqoop export --connect jdbc:<your_rdbms(mysql or oracle or others)>//<ipaddress>/<database_name>
+                     --username <your_RDBMS_user_name>
+                     --password <your_db_password>
+                     --table <your_destination_table_in_RDBS_which_is_precreated>
+                     --export-dir <your_hadoop_related_source_dir>
+
+3) SQOOP LIST-DATABASES : from sqoop find out your RDBMS databases 
+        sqoop list-databases --connect jdbc:<your_rdbms(mysql or oracle or others)>//<ipaddress>/
+                             --username <your_RDBMS_user_name>
+                             --password <your_db_password>
+
+4) SQOOP LIST-TABLES : from sqoop find out your RDBMS tables
+        sqoop list-tables --connect jdbc:<your_rdbms(mysql or oracle or others)>//<ipaddress>/<database_name>
+                          --username <your_RDBMS_user_name>
+                          --password <your_db_password>
+
+##################### SQOOP Commands ## END ############################################################################
