@@ -50,7 +50,19 @@ SPARK -->> 3.x version
 
 4) Driver and Executor programs :-
 
+
+5) Broad cast variable :- (need review)
+
+        Suppose we want to do an operation on a data frame by using a small dictionary variable ,
+        the data frames data is distributed in cluster but small variable will be present in one node , so all the data frames in nodes try to do 
+        some transfer of data between small variable node and dataframe nodes .
+        Instead of that we can make that small variable data to stay in dataframe's data existing nodes so that it mantains a local copy 
+        and uses that to do its operations
+
  
+ 6) NARROW and WIDE transformations :-
+
+        
 
 ##################### Quick Theoritical concepts ## START ###################################################################
 
@@ -233,7 +245,7 @@ Solution given by WINDOW functions :: Even though you are selecting multiple col
 
 
 
-##################### Run actual Sql queries in pyspqrk ## START ###################################################################
+##################### Run actual Sql queries in pyspark ## START ###################################################################
 
 from pyspark.sql import SparkSession
 ss = SparkSession.builder.appName("Running SQL Queries in PySpark").getOrCreate()
@@ -244,7 +256,7 @@ my_df.createOrReplaceTempView("my_df_temp_view")
 output_as_df = ss.sql("select * from my_df_temp_view where <some_condition>")  ---->>> query can be anything inside
 output_as_df.show()
 
-##################### Run actual Sql queries in pyspqrk  ## END ###################################################################
+##################### Run actual Sql queries in pyspark  ## END ###################################################################
 
 
 
