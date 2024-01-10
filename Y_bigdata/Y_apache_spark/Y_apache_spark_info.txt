@@ -1,0 +1,7 @@
+
+1) SPARK is relacement of MAP REDUCE in hadoop echo system
+2) SPARK is faster than MAP REDUCE because , SPARK does "COMPLETE" in memory computation unlike 
+   MAP REDUCE where even though it too uses memory to do computation , there might be times where some intermediate data gets 
+   moved back and forth between memory and storage 
+   that movement back and forth is what makes MAP REDUCE slow.
+3)
