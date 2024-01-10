@@ -1,12 +1,12 @@
 
 #################### Most important execution order in SQL statements for compiler ## START ###########################################
-
-FROM
-WHERE
-GROUP BY
-HAVING
-SELECT
-ORDER BY
+1) Execution order
+    FROM
+    WHERE
+    GROUP BY
+    HAVING
+    SELECT
+    ORDER BY 
 
 #################### Most important execution order in SQL statements for compiler ## End ###########################################
 

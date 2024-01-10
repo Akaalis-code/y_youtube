@@ -1,1 +1,0 @@
-This folder contains pyspark commands file and its equalent code in sql
