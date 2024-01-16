@@ -30,3 +30,8 @@ FROM tables
 WHERE conditions
 GROUP BY expression 1, expression 2
 
+
+
+
+Lead() and Lag() functions in window functions
+
