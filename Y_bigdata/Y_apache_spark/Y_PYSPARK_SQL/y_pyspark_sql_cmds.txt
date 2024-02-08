@@ -133,7 +133,7 @@ SPARK -->> 3.x version
     1.4) Omit some columns from data frame 
 
             df2 = df1.drop('col1','col2',...,'coln')  ---->>> df1 will still have them 
-            df2 = df1.dropDuplicates()                ---->>> To ddrop duplicates by considering only few columns menton them in paranthesis
+            df2 = df1.dropDuplicates()                ---->>> To drop duplicates by considering only few columns menton them in paranthesis
             df2 = df1.dropna()                        ---->>> If any column contains null values drops the entire row
 
 
