@@ -1,0 +1,10 @@
+# Checking how different tables behave :
+    1) Create a normal table with some schema and insert couple of rows manually :
+        1.1) Check what the table`s type is comming up in META DATA
+        1.2) Check the actual location of the data stored and if possible where the table definition is stored
+        1.3) Delete the table and see if only table definition is deleting or the data too
+
+    2) Create a table By using the data that is actually present in external storage :
+        2.1) Check what the table`s type is comming up in META DATA
+        2.2) Check the actual location of the data stored and if possible where the table definition is stored
+        2.3) Delete the table and see if only table definition is deleting or the data too
