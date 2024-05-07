@@ -5,10 +5,10 @@ from scipy import signal
 
 import matplotlib.pyplot as pplt
 
-var_axis_X = numpy.linspace(0, 6.28, num=50)
+var_axis_X = numpy.linspace(0, 6.28, num=200)
 #var_axis_X = numpy.array(var_axis_X)
 print('X axis list of values : ',var_axis_X)
-var_n = 4 # number of waves used for construction
+var_n = 51 # number of waves used for construction
 
 var_a0 = 0 # a0 value
 var_lst_an = ['NA'] # list of Cosine weightages
@@ -36,14 +36,18 @@ def mthd_get_coef(para_the_func , para_n ,para_an_or_bn):
 
 
 def mthd_output(para_n , para_a0 , para_lst_an , para_lst_bn , para_axis_X):
-    f_of_x = (para_a0)*(1/2) 
-    for cntr in range(1 , len(para_lst_an)) :
-        #print('f_of_x in an : ',f_of_x)
-        f_of_x = f_of_x + para_lst_an[cntr] * (numpy.cos( (cntr) * (para_axis_X) ))
+    #f_of_x = (para_a0)*(1/2) 
+    for cntr in range(0 , len(para_lst_an)) :
+        if cntr == 0 :
+            f_of_x = (para_a0)*(1/2) 
+        else :
+            #print('f_of_x in an : ',f_of_x)
+            f_of_x = f_of_x + para_lst_an[cntr] * (numpy.cos( (cntr) * (para_axis_X) ))
+            f_of_x = f_of_x + para_lst_bn[cntr] * (numpy.sin( (cntr) * (para_axis_X) ))
 
-    for cntr in range(1 , len(para_lst_bn)) :
-        #print('f_of_x in bn : ',f_of_x)
-        f_of_x = f_of_x + para_lst_bn[cntr] * (numpy.sin( (cntr) * (para_axis_X) ))
+    # for cntr in range(1 , len(para_lst_bn)) :
+    #     #print('f_of_x in bn : ',f_of_x)
+    #     f_of_x = f_of_x + para_lst_bn[cntr] * (numpy.sin( (cntr) * (para_axis_X) ))
 
     return f_of_x
 
