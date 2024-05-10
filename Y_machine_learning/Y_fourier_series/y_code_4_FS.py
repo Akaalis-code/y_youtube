@@ -5,10 +5,22 @@ from scipy import signal
 
 import matplotlib.pyplot as pplt
 
-var_axis_X = numpy.linspace(0, 6.28, num=50)
-#var_axis_X = numpy.array(var_axis_X)
-# print('X axis list of values : ',var_axis_X)
-var_n = 50 # number of waves used for construction
+#print(pplt.style.available)
+#pplt.style.use('dark_background')
+pplt.style.use('fivethirtyeight')
+
+var_fig = pplt.figure()
+var_figMgr = pplt.get_current_fig_manager()
+var_figMgr.full_screen_toggle()
+
+gs = var_fig.add_gridspec(2,2)
+Axes1 = var_fig.add_subplot(gs[0, :])
+Axes2 = var_fig.add_subplot(gs[1, 0])
+Axes3 = var_fig.add_subplot(gs[1, 1])
+
+
+var_axis_X = numpy.linspace(0, 6.28, num=200)
+var_n = 100 # number of waves used for construction
 
 var_a0 = 0 # a0 value
 var_lst_an = ['NA'] # list of Cosine weightages
@@ -36,7 +48,7 @@ def mthd_get_coef(para_the_func , para_n ,para_an_or_bn):
 
 var_lst_f_of_X = []
 def mthd_output(para_n , para_a0 , para_lst_an , para_lst_bn , para_axis_X):
-    #f_of_x = (para_a0)*(1/2) 
+
     for cntr in range(0 , len(para_lst_an)) :
         if cntr == 0 :
             f_of_x = (para_a0)*(1/2) 
@@ -45,20 +57,26 @@ def mthd_output(para_n , para_a0 , para_lst_an , para_lst_bn , para_axis_X):
             f_of_x = f_of_x + para_lst_an[cntr] * (numpy.cos( (cntr) * (para_axis_X) ))
             f_of_x = f_of_x + para_lst_bn[cntr] * (numpy.sin( (cntr) * (para_axis_X) ))
         var_lst_f_of_X.append(f_of_x)
-    # for cntr in range(1 , len(para_lst_bn)) :
-    #     #print('f_of_x in bn : ',f_of_x)
-    #     f_of_x = f_of_x + para_lst_bn[cntr] * (numpy.sin( (cntr) * (para_axis_X) ))
-
     return f_of_x
 
 
 
 
 
-def mth_plot_graph (para_axis_x , para_main_func , para_generated_func):
-    pplt.plot(para_axis_x,para_main_func )
-    pplt.plot(para_axis_x,para_generated_func )
-    #pplt.show()
+
+def mth_plot_graph (para_axis_x , para_main_func , para_generated_func , para_cntr):
+    Axes1.plot(para_axis_x,para_main_func )
+    Axes1.plot(para_axis_x,para_generated_func)
+    Axes1.text(0.5,-0.5,'Fourier series output')
+    Axes1.text(0,-0.75,' a0 + sigma({an * COS(n*x)+bn * SIN(n*x)} , range-> 1 , Infinity)' , fontsize =  'small')
+    #mth_sin_and_cosine_plot(var_a0 , var_lst_an , var_lst_bn , para_cntr)
+    if para_cntr == 0 :
+        Axes2.plot(para_axis_x , var_a0)
+    else :
+        Axes2.plot(para_axis_x , var_lst_an[para_cntr] * numpy.cos( para_cntr * para_axis_x))
+        Axes3.plot(para_axis_x , var_lst_bn[para_cntr] * numpy.sin( para_cntr * para_axis_x))
+        Axes2.text(0.5,-0.02,'an * COS(n*x)')
+        Axes3.text(0.5,-0.75,'bn * SIN(n*x)')
 
 
 
@@ -72,24 +90,26 @@ for i in range (0,var_n) :
         var_lst_an.append(mthd_get_coef(var_the_func , i , 'an'))
         var_lst_bn.append(mthd_get_coef(var_the_func , i , 'bn'))
 
-# print(' var_a0 : ',var_a0)
-# print(' var_lst_an : ',var_lst_an)
-# print(' var_lst_bn : ',var_lst_bn)
-
-
-
+for i in range (0,var_n):
+    if i == 0 :
+        if var_a0 < 0.05 :
+            var_a0 = 0
+    else :
+        if var_lst_an[i] < 0.001:
+            var_lst_an[i] = 0
+        if var_lst_bn[i] < 0.001:
+            var_lst_bn[i] = 0
 
 
 var_f_of_x = mthd_output(var_n , var_a0 , var_lst_an , var_lst_bn , var_axis_X)
-print('var_f_of_x : ', var_f_of_x)
-print('var_lst_f_of_X : ' , var_lst_f_of_X)
+
 
 
 
 array=numpy.array
 for i in range(1,len(var_lst_f_of_X)) :
-    pplt.clf()
-    mth_plot_graph (var_axis_X , var_the_func(var_axis_X) , var_lst_f_of_X[i])
+    Axes1.cla()
+    mth_plot_graph (var_axis_X , var_the_func(var_axis_X) , var_lst_f_of_X[i] , i)
     pplt.pause(.01)
 
 pplt.show()
