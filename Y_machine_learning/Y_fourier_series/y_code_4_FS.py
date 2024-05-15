@@ -28,7 +28,7 @@ Axes4.set_xticklabels([])
 Axes4.set_yticklabels([])
 
 
-var_axis_X = numpy.linspace(0, 6.28, num=1000)
+var_axis_X = numpy.linspace(0, 6.28, num=100)
 var_n = 100 # number of waves used for construction
 
 var_a0 = 0 # a0 value
@@ -42,13 +42,13 @@ var_lst_bn = ['NA'] # list of Sine weightages
 def mthd_get_coef(para_the_func , para_n ,para_an_or_bn):
     # integrate.quad  is giving tuple as output , in which zero th index contains integration awnser
     if para_n == 0 and para_an_or_bn == 'an':
-        a0 = (0.318) * ((integrate.quad(lambda x:para_the_func(x) , -(math.pi) , (math.pi)))[0])
+        a0 = (0.318) * ((integrate.quad(lambda x:para_the_func(x) , 0, (2 * numpy.pi)))[0])
         return a0
     if para_n != 0 and para_an_or_bn == 'an':    
-        an = (0.318) * ((integrate.quad((lambda x:para_the_func(x) * math.cos(para_n * x)) , -math.pi , math.pi))[0])
+        an = (0.318) * ((integrate.quad((lambda x:para_the_func(x) * numpy.cos(para_n * x)) , 0 , (2 * numpy.pi)))[0])
         return an
     if para_n != 0 and para_an_or_bn == 'bn':    
-        bn = (0.318) * ((integrate.quad((lambda x:para_the_func(x) * math.sin(para_n * x)) , -math.pi , math.pi))[0])
+        bn = (0.318) * ((integrate.quad((lambda x:para_the_func(x) * numpy.sin(para_n * x)) , 0 , (2 * numpy.pi)))[0])
         return bn
     return 'NA'
 
@@ -78,7 +78,7 @@ def mth_plot_graph (para_axis_x , para_main_func , para_generated_func , para_cn
     Axes1.plot(para_axis_x,para_main_func )
     Axes1.plot(para_axis_x,para_generated_func)
     Axes1.text(3.16,1,'Fourier series output')
-    Axes1.text(3.16,0.75,' a0 + sigma({an * COS(n*x)+bn * SIN(n*x)} , range-> 1 , Infinity)' , fontsize =  'small')
+    Axes1.text(3.16,0.5,' a0 + sigma({an * COS(n*x)+bn * SIN(n*x)} , range-> 1 , Infinity)' , fontsize =  'small')
     #mth_sin_and_cosine_plot(var_a0 , var_lst_an , var_lst_bn , para_cntr)
     if para_cntr == 0 :
         Axes2.plot(para_axis_x , var_a0)
@@ -104,8 +104,13 @@ def mth_plot_graph (para_axis_x , para_main_func , para_generated_func , para_cn
 
 
 
+# def mthd_input_func(para_x):
+#     return signal.sawtooth((2 * numpy.pi * para_x)/3.14)
+
 def mthd_input_func(para_x):
-    return signal.sawtooth((2 * numpy.pi * para_x)/3.14)
+    return 5/(1+(math.e)**(-para_x+3.14))
+
+
 var_the_func = mthd_input_func
 
 
