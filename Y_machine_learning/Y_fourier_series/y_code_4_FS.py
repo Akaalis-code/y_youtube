@@ -42,7 +42,7 @@ var_lst_bn = ['NA'] # list of Sine weightages
 
 
 def mthd_get_coef(para_the_func , para_n ,para_an_or_bn):
-    # integrate.quad  is giving tuple as output , in which zero th index contains integration awnser
+    # integrate.quad  is giving tuple as output , in which zero th index contains integration awnser , tuple[1] contains error
     if para_n == 0 and para_an_or_bn == 'an':
         a0 = (0.318) * ((integrate.quad(lambda x:para_the_func(x) , 0, (2 * numpy.pi)))[0])
         return a0
@@ -53,8 +53,6 @@ def mthd_get_coef(para_the_func , para_n ,para_an_or_bn):
         bn = (0.318) * ((integrate.quad((lambda x:para_the_func(x) * numpy.sin(para_n * x)) , 0 , (2 * numpy.pi)))[0])
         return bn
     return 'NA'
-
-
 
 
 var_lst_f_of_X = []
@@ -77,16 +75,21 @@ def mthd_output(para_n , para_a0 , para_lst_an , para_lst_bn , para_axis_X):
 
 def mth_plot_graph (para_axis_x ,para_main_func, para_generated_func , para_cntr):
     Axes1.cla()
-    Axes1.scatter(para_axis_x,para_main_func )
-    Axes1.plot(para_axis_x,para_generated_func)
-    Axes1.text(3.16,1,'Fourier series output')
-    Axes1.text(3.16,0.5,' a0 + sigma({an * COS(n*x)+bn * SIN(n*x)} , range-> 1 , Infinity)' , fontsize =  'small')
+    #Axes1.set_ylim(0, 12) 
+    #Axes1.set_title("FOURIER REGRESSION")
+    #Axes1.set_xlabel("TIME")
+    Axes1.set_ylabel("STOCK PRICE SAMPLE DATA")
+    Axes1.scatter(para_axis_x,para_main_func ,color='red' )
+    Axes1.plot(para_axis_x,para_generated_func )
+    #Axes1.legend(['Input sample data like stock price', 'Fourier regression'] , loc='upper left')
+    #Axes1.text(3.16,1,'Fourier series output')
+    #Axes1.text(3.16,0.5,' a0 + sigma({an * COS(n*x)+bn * SIN(n*x)} , range-> 1 , Infinity)' , fontsize =  'small')
     #mth_sin_and_cosine_plot(var_a0 , var_lst_an , var_lst_bn , para_cntr)
     if para_cntr == 0 :
         Axes2.plot(para_axis_x , var_a0)
     else :
         Axes2.plot(para_axis_x , var_lst_an[para_cntr] * numpy.cos( para_cntr * para_axis_x))
-        Axes2.text(1,-0.04,'an * COS(n*x)')
+        Axes2.text(1,-1.25,'an * COS(n*x)')
 
         Axes3.plot(para_axis_x , var_lst_bn[para_cntr] * numpy.sin( para_cntr * para_axis_x))
         Axes3.text(1,-0.75,'bn * SIN(n*x)')

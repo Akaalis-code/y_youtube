@@ -15,7 +15,8 @@ def mth_input_func(para_x):
             j=cnt+1
             return (var_data_stock_price[j] - var_data_stock_price[i])/(var_data_time[j] - var_data_time[i])*(para_x - var_data_time[i])+(var_data_stock_price[i])
 
-
+# mth_input_func(var_data_time)
+# pplt.scatter(var_data_time , var_data_stock_price , color='red')
 #print((integrate.quad((lambda x:mth_input_func(x) * numpy.cos(3*x)) , 0 , (2 * numpy.pi)))[0])
 # print(mth_input_func(0))
 # print(mth_input_func(0.1))
