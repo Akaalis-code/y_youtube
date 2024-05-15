@@ -1,9 +1,11 @@
 import math
 import numpy 
 import scipy.integrate as integrate
-from scipy import signal
+from scipy import signal #for sawtooth wave
 
 import matplotlib.pyplot as pplt
+
+import y_input_graph
 
 #print(pplt.style.available)
 #pplt.style.use('dark_background')
@@ -28,7 +30,7 @@ Axes4.set_xticklabels([])
 Axes4.set_yticklabels([])
 
 
-var_axis_X = numpy.linspace(0, 6.28, num=100)
+var_axis_X = numpy.linspace(0, 2 * numpy.pi , num=100)
 var_n = 100 # number of waves used for construction
 
 var_a0 = 0 # a0 value
@@ -73,9 +75,9 @@ def mthd_output(para_n , para_a0 , para_lst_an , para_lst_bn , para_axis_X):
 
 
 
-def mth_plot_graph (para_axis_x , para_main_func , para_generated_func , para_cntr):
+def mth_plot_graph (para_axis_x ,para_main_func, para_generated_func , para_cntr):
     Axes1.cla()
-    Axes1.plot(para_axis_x,para_main_func )
+    Axes1.scatter(para_axis_x,para_main_func )
     Axes1.plot(para_axis_x,para_generated_func)
     Axes1.text(3.16,1,'Fourier series output')
     Axes1.text(3.16,0.5,' a0 + sigma({an * COS(n*x)+bn * SIN(n*x)} , range-> 1 , Infinity)' , fontsize =  'small')
@@ -111,7 +113,7 @@ def mthd_input_func(para_x):
     return 5/(1+(math.e)**(-para_x+3.14))
 
 
-var_the_func = mthd_input_func
+var_the_func = y_input_graph.mth_input_func
 
 
 
@@ -142,7 +144,8 @@ var_f_of_x = mthd_output(var_n , var_a0 , var_lst_an , var_lst_bn , var_axis_X)
 
 array=numpy.array
 for i in range(1,len(var_lst_f_of_X)) :
-    mth_plot_graph (var_axis_X , var_the_func(var_axis_X) , var_lst_f_of_X[i] , i)
+    #mth_plot_graph (var_axis_X , var_the_func(var_axis_X) , var_lst_f_of_X[i] , i)
+    mth_plot_graph (var_axis_X , y_input_graph.var_data_stock_price , var_lst_f_of_X[i] , i)
     pplt.pause(.01)
 
 pplt.show()
