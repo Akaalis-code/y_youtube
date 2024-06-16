@@ -26,3 +26,25 @@
       4) Cluster manager = An external service for acquiring resources on the cluster
          Based on what cluster manager is being used we can decide which mode our Spark cluster is deployed
          example = standalone manager, Mesos, YARN, Kubernetes
+      5) Each "WORKER NODE" has one or more "EXECUTROS" and each executor will have one or more "SLOTS"
+         One SLOT will be assigned one CPU
+
+
+
+# PARTITIONING concept in SPARK
+
+      1) SPARK PARTITIONING can be understood in two different ways :
+            WAY 1 :
+               DISK PARTITIONS : These are the partitions in which HDFS(or any other storage protocal) decides to store in the disk
+               MEMORY PARTITIONS : When Spark data reader reads data into memory , it forms patitions in memory in its own way 
+                                   irrespective of how it was stored in DISK
+            
+            WAY 2 :
+               INPUT PARTITIONING : Think of all the already partitioned data in HDFS as one single data set.
+                                    Spark data reader decides to read the DATASET while creating the partitions 
+                                    in its own way into memory irrespective of how it was partitioned in DISK
+
+                                    While reading into memory , DEFAULT SIZE of single partiton is 128MB
+                                    "spark.sql.files.maxPartitionBytes" this config can be set to change the size from 128 MB
+               OUTPUT PARTITIONING : While writing on to a disk , dataframe writer 
+               SHUFFLE PARTITIONING :
