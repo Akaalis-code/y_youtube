@@ -178,7 +178,7 @@ group by city1,city2;
 
 
 
---- My friends final solution
+--- BEST and final solution
 select  t3.source,
 		t3.destination,
 		t3.distance,
