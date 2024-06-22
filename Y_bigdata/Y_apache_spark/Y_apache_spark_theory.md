@@ -36,6 +36,7 @@
       1) SPARK PARTITIONING can be understood in two different ways :
             WAY 1 :
                DISK PARTITIONS : These are the partitions in which HDFS(or any other storage protocal) decides to store in the disk
+
                MEMORY PARTITIONS : When Spark data reader reads data into memory , it forms patitions in memory in its own way 
                                    irrespective of how it was stored in DISK
             
@@ -46,5 +47,12 @@
 
                                     While reading into memory , DEFAULT SIZE of single partiton is 128MB
                                     "spark.sql.files.maxPartitionBytes" this config can be set to change the size from 128 MB
+
                OUTPUT PARTITIONING : While writing on to a disk , dataframe writer 
-               SHUFFLE PARTITIONING :
+
+               SHUFFLE PARTITIONING : After input partitioning is done , before doing any wide transformations , Spark 
+                                      SHUFFLES data among the "worker nodes memory" based on the WIDE TRANSFORMATION condition
+
+                                      "Spark.sql.shuffle.partitions" this SPARK config can be used to set number of 
+                                      SHUFFLE partitions (default is 200)
+
