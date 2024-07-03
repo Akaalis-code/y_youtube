@@ -1,5 +1,9 @@
+# NEW ARCHITECHTURE IMAGE
+
 ![New image of Architecture](./y_nontxt_resources/y_images/y_architechture.png)
 
+
+# OLD ARCHITECHTURE IMAGE
 <img src="./y_nontxt_resources/y_images/y_old_architech_of_Azdtbrks.png" alt="Old image of Architecture" width="700"/>
 
 
