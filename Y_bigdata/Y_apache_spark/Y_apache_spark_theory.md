@@ -26,11 +26,22 @@
       4) Cluster manager = An external service for acquiring resources on the cluster
          Based on what cluster manager is being used we can decide which mode our Spark cluster is deployed
          example = standalone manager, Mesos, YARN, Kubernetes
-      5) Each "WORKER NODE" has one or more "EXECUTROS" and each executor will have one or more "SLOTS"
+      5) Each "WORKER NODE" has one or more "EXECUTORS" and each executor will have one or more "SLOTS"
          One SLOT will be assigned one CPU
 
 
 
+
+# SPARK code execution theory :
+      1) Every SPARK command that you write will fall into one of two below mentioned categories
+         - TRANSFORMATIONS
+         - ACTIONS
+      2) Lets try to understand above two with an example :
+         Suppose We have table of {hundred rows and two columns} and our necessity is to do following in order
+            stp-1) Read tables data into data frame 
+            stp-2) multiply the data of first column values by 3 and read those values into data frames
+            stp-3) divide step-2 dataframe first column by 10 and read into new data frame  
+      
 # PARTITIONING concept in SPARK
 
       1) SPARK PARTITIONING can be understood in two different ways :
