@@ -20,6 +20,15 @@
         data will be added as a new row.
         Examples :
             All SCD type 1 examples come under here with extra necessity of retaining old record
+        
+        ``` MERGE INTO target_tbl 
+            USING source_tbl
+            on MERGE COLS
+            When matched and target_tbl.is_latest == 1 then
+                update set  target_tbl.is_latest = 0 , target_tbl.end_date = source_tbl.start_date 
+            When matched and target_tbl.is_latest == 0 then
+                insert (target_cols) values (source_cols) 
+        ```
 
     SCD type 3 :
         If any updated info of a CELL comes , to store that updated value we create a new column instead of adding
