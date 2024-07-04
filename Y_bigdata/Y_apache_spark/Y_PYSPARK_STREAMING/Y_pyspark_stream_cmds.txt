@@ -1,3 +1,17 @@
-    from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession
 
-    ss=SparkSession.builder.getOrCreate()
+ss=SparkSession.builder.getOrCreate()
+
+ss.conf.set("spark.sql.streaming.schemaInference", True)
+read_stream_df =    ss.readStream.format("csv")\
+                    .options(header = True,delimiter = ",",mode = "PERMISSIVE", columnNameOfCorruptRecord = "_corrupt_record")\
+                    .load("/home/pd/Documents/Y_DATA/Y_INPUT_DATA/Y_CSV_DATA/y_csv_file1.csv")
+
+transformed
+
+writing_df = flattened_df.writeStream \
+    .format("json") \
+    .option("path", "data/output/device_data") \
+    .option("checkpointLocation","checkpoint_dir") \
+    .outputMode("append") \
+    .start()
