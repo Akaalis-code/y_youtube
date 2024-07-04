@@ -4,14 +4,27 @@ ss=SparkSession.builder.getOrCreate()
 
 ss.conf.set("spark.sql.streaming.schemaInference", True)
 read_stream_df =    ss.readStream.format("csv")\
-                    .options(header = True,delimiter = ",",mode = "PERMISSIVE", columnNameOfCorruptRecord = "_corrupt_record")\
-                    .load("/home/pd/Documents/Y_DATA/Y_INPUT_DATA/Y_CSV_DATA/y_csv_file1.csv")
+                    .options(header = True,delimiter = ",")\
+                    .load("/home/pd/Documents/Y_DATA/Y_INPUT_DATA/Y_CSV_DATA/")
 
-transformed
+transform_df = read_stream_df.withColumn("new_column",read_stream_df['id']+2)
 
-writing_df = flattened_df.writeStream \
-    .format("json") \
-    .option("path", "data/output/device_data") \
-    .option("checkpointLocation","checkpoint_dir") \
-    .outputMode("append") \
-    .start()
+writing_df = transform_df.writeStream \
+                .format("csv") \
+                .option("path", "/home/pd/Documents/Y_DATA/Y_OUTPUT_DATA/Y_CSV_DATA") \
+                .option("checkpointLocation","checkpoint_dir") \
+                .outputMode("append") \
+                .start().awaitTermination()
+
+
+
+
+########################### Code for visualising data ### START ###############################################################################
+from pyspark.sql import SparkSession as sp
+ss=sp.builder.getOrCreate()
+
+df=ss.read.csv("/home/pd/Documents/Y_DATA/Y_OUTPUT_DATA/Y_CSV_DATA/*.csv")
+df.show()
+
+
+########################### Code for visualising data ### END ###############################################################################
