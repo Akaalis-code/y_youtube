@@ -31,12 +31,16 @@
 		- you can use SPARK config method to set whatever config you want to get authenticated 
 		- example :
 			spark.conf.set("...","...")
-		- Number of cings may change according to your choosen authentication type
+		- Number of configs may change according to your choosen authentication type
 		- If these configs are set in cluster level then everyone who has access to cluster can use it (less safe)
 		- or in your program alone you can set it (more safe)
 
 # Authentication types to connect to cloud OBJECT storage :
 	- ACCESS KEYS :
+		spark.conf.set(
+						"fs.azure.account.key.<storage-account>.dfs.core.windows.net",
+						"<storage-account-access-key>"
+						)
 	- Shared Access Signature (SAS) :
 	- Service principle
 
