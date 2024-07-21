@@ -7,9 +7,9 @@ CREATE TABLE y_tbl_customers_dup_info (name varchar(30) , address varchar(30), a
 INSERT INTO y_tbl_customers_dup_info 
 values   ('sai' , 'chennai' , 30),
          ('sai' , 'chennai' , 30),
-    		 ('naveen' , 'delhi' , 20),
-    		 ('hari' , 'kochi' , 50),
-    		 ('hari' , 'kochi' , 50);
+		('naveen' , 'delhi' , 20),
+		('hari' , 'kochi' , 50),
+		('hari' , 'kochi' , 50);
 
 
 select * from y_tbl_customers_dup_info;
