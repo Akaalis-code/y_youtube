@@ -1,29 +1,44 @@
-CREATE TABLE y_tbl_customers_dup_info (name varchar(30) , address varchar(30), age int);
+DISCUSSING POINTS IN THE VIDEO
+
+1) Interview Question
+2) Solution
+3) Why it shouldnt have worked
+4) But why is it working anyway
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE TABLE tbl_customers_dup_info (name varchar(30) , address varchar(30));
 
 
 
 
-INSERT INTO y_tbl_customers_dup_info 
-values   ('sai' , 'chennai' , 30),
-         ('sai' , 'chennai' , 30),
-         ('sai' , 'chennai' , 30),
-      		('naveen' , 'delhi' , 20),
-      		('hari' , 'kochi' , 50),
-      		('hari' , 'kochi' , 50);
+INSERT INTO tbl_customers_dup_info 
+values   ('sai' , 'chennai' ),
+         ('sai' , 'chennai' ),
+         ('sai' , 'chennai' ),
+      		('naveen' , 'delhi' ),
+      		('hari' , 'kochi' ),
+      		('hari' , 'kochi' );
 
 
-select * from y_tbl_customers_dup_info;
+select * from tbl_customers_dup_info;
 
 
-delete from y_tbl_customers_dup_info as tgt
+
+
+delete from tbl_customers_dup_info as tgt
 where EXISTS (select * from (
-                              select *,ROW_NUMBER() over(partition by name,address,age) as rn
-                              from y_tbl_customers_dup_info as ref
+                              select *,ROW_NUMBER() over(partition by name,address) as rn
+                              from tbl_customers_dup_info as ref
                               where ref.name = tgt.name 
                                 and ref.address = tgt.address
-                                and ref.age = tgt.age
                             ) as dt
               where rn>1
               );
               
-select * from y_tbl_customers_dup_info;
+select * from tbl_customers_dup_info;
