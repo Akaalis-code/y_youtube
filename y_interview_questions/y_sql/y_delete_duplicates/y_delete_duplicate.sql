@@ -61,12 +61,12 @@ CREATE TABLE tbl_customers_dup_info (name varchar(30) , address varchar(30) , du
 
 
 INSERT INTO tbl_customers_dup_info 
-values   ('sai' , 'chennai' ,'a1'),
-         ('sai' , 'chennai' ,'b1'),
-         ('sai' , 'chennai' ,'c1'),
-      		('naveen' , 'delhi' ,'d1'),
-      		('hari' , 'kochi' ,'e1'),
-      		('hari' , 'kochi' ,'f1');
+values   ('sai' , 'chennai' ,'a'),
+         ('sai' , 'chennai' ,'b'),
+         ('sai' , 'chennai' ,'c'),
+      		('naveen' , 'delhi' ,'d'),
+      		('hari' , 'kochi' ,'e'),
+      		('hari' , 'kochi' ,'f');
 
 
 select * from tbl_customers_dup_info;
