@@ -3,7 +3,7 @@ CREATE TABLE y_tbl_cities_dist (source varchar(30) , destination varchar(30), di
 
 
 
-
+Q) Find max distance between cities and print it in new column
 
 
 INSERT INTO y_tbl_cities_dist 
@@ -178,7 +178,7 @@ group by city1,city2;
 
 
 
---- My friends final solution
+--- BEST and final solution
 select  t3.source,
 		t3.destination,
 		t3.distance,

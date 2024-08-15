@@ -395,3 +395,40 @@ Suppose if we have two dataframes df1 and df2
 ##################### MAP FLATMAP and REDUCE in PYSPARK ## START #################################################################################################
 
 ##################### MAP FLATMAP and REDUCE in PYSPARK ## END #################################################################################################
+
+
+
+##################### FILE READ CORRUPT RECORD CATCHING ## START #################################################################################################
+1) Any file type data that you have , there could be some rows where number of data columns are more than column headers
+   Those data rows are corrupt data rows .
+2) Spark provides a automated way to catch those corrupt rows
+
+3) Below is an example of the code :
+    SAMPLE csv data in the file :
+        col1 , col2 ,col3
+        "r1c1" , "r1c2" , "r1c3"
+        "r2c1" , "r2c2" , "r2c3" , "r2c4"
+        "r3c1" , "r3c2" , "r3c3"
+
+    my_schema = ''' col1 datatype,
+                    col2 datatype,
+                    col3 datatype,
+                    _corrupt_record string
+                    '''
+    df2 =   ss.read.schema(my_schema).format("csv")\
+            .options(header = True,delimiter = ",",mode = "PERMISSIVE", columnNameOfCorruptRecord = "_corrupt_record")\
+            .load("/home/pd/Documents/Y_DATA/Y_INPUT_DATA/Y_CSV_DATA/y_csv_file1.csv")
+
+4) "mode" parameter in above options code has three possible values 
+
+        mode = "PERMISSIVE" :
+            its a default mode 
+            Nulls are inserted for the ceels which it could not find data
+            Bad records data of a row will be placed in the column name mntioned in "columnNameOfCorruptRecord"
+
+        mode = "DROPMALFORMED" :
+            Dataframe will only have data which fits properly in schema
+
+        mode = "FAILFAST" :
+            If corrupt records are detected , the whole code raises an exception at that point
+##################### FILE READ CORRUPT RECORD CATCHING ## End #################################################################################################

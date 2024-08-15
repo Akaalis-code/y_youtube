@@ -1,9 +1,0 @@
-SCD (Slowly changing dimensions )
-
-star and snowflake schema
-
-Snowflake snowpipe = COPY command
-
-Snowflake streams = 
-
-Snowflake time travel = 
