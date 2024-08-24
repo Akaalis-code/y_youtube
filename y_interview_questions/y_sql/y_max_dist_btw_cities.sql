@@ -1,9 +1,12 @@
+-- Q) Find max distance between cities and print it in new column
+
+
 CREATE TABLE y_tbl_cities_dist (source varchar(30) , destination varchar(30), distance int);
 
 
 
 
-Q) Find max distance between cities and print it in new column
+
 
 
 INSERT INTO y_tbl_cities_dist 

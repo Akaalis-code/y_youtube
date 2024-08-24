@@ -1,5 +1,7 @@
 ------ MYSQL based syntax , Might require syntax correction in other DB s
 -- create
+
+-- Q) Find out of right of two single column tables 
 CREATE TABLE table1 (
   col_of_tab1 TEXT
 );
