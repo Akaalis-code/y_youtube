@@ -1,7 +1,6 @@
-Discussing points in this VIDEO :
-    1) Discuss interview question
-    2) Provide my awnser and discuss its inefficiencies
-    3) Give Best scalable solution 
+-- Q) Write a sql logic to count the number of instances the 
+--    word BUS is presnt atleast 3 times in a continuous manner
+
 
 
 CREATE TABLE tbl_a (id int , type varchar(30));
@@ -10,28 +9,29 @@ CREATE TABLE tbl_a (id int , type varchar(30));
 
 
 INSERT INTO tbl_a 
-values   (1 , 'ball' ),
-         (2 , 'ball' ),
-         (3 , 'ball' ),
-      	 (4 , 'cat'  ),
-      	 (5 , 'ball' ),
-      	 (6 , 'cat'  ),
-      	 (7 , 'ape'  ),
-      	 (8 , 'ball' ),
-      	 (9 , 'ball' ),
-         (10, 'ball' ),
-         (11, 'ball' ),
-         (12, 'fan'  ),
-         (13, 'ball' ),
-         (14, 'ball' );
+values   (1 , 'bus' ),
+         (2 , 'bus' ),
+         (3 , 'bus' ),
+      	 (4 , 'car'  ),
+      	 (5 , 'car' ),
+      	 (6 , 'bus'  ),
+      	 (7 , 'air'  ),
+      	 (8 , 'bus' ),
+      	 (9 , 'bus' ),
+         (10, 'bus' ),
+         (11, 'bus' ),
+         (12, 'ship'  ),
+         (13, 'bus' ),
+         (14, 'bus' );
 
 select * from tbl_a;
 
 
 
-select count(*)
+select count(distinct adjacency)
 from (
-          select count(set_number) as adjacency
+          select  *,
+                  count(set_number) over (partition by set_number)as adjacency
           from (
                       select  *,
                               row_number() over (partition by type)  as rn,
@@ -39,7 +39,6 @@ from (
                       from tbl_a
                       order by id
                 ) as a
-          where type = 'ball'
-          group by set_number
+          where type = 'bus'
       ) as c
-where adjacency>=2
+where adjacency>=3
