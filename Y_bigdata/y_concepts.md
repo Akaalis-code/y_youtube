@@ -9,5 +9,28 @@
             book_author , book_name , book_id in that increasing order .
 
     Now if you were to "PARTITION" the library into seperate sections , its meaningless to segregate library based on book_id because of two reasons .
-        1) BOOK_ID will be unique and PARTITIONING the library into billion partitions is as good as not doing at all , you have to choose least possible attribute to partition by BOOK_GENRE in this case
-        2) The customers of library wont know what they want by BOOK_ID  
+        1)  BOOK_ID will be unique and PARTITIONING the library into billion partitions is as good as not doing at all , 
+            you have to choose least possible cardinality attribute to partition by , BOOK_GENRE in this case
+        2)  The customers of library wont know what they want by BOOK_ID  , in SELECT query context where clause.
+
+
+## PARTITIONING 
+    Types of partitioning :
+        List partitioning
+        Range partitioning
+        Hash partitioning
+        Composite partitioning
+    
+    Declarative partitioning vs Inheritence partitioning
+
+
+## INDEX
+    Local index vs global index
+
+
+
+
+## Table Migratition startegies 
+    Traditional
+    Blue green
+    logical replication

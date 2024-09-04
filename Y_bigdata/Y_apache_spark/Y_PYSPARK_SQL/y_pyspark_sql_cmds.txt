@@ -62,8 +62,12 @@ SPARK -->> 3.x version
  
  6) NARROW and WIDE transformations :-
 
-        
 
+
+7) Filters working concepts
+    Predicate Pushdown
+    Projection Pushdown
+    Partition pruning
 ##################### Quick Theoritical concepts ## START ###################################################################
 
 
