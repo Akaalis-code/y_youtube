@@ -27,6 +27,13 @@
 ## INDEX
     Local index vs global index
 
+    Types :
+        Clustered :
+            In this type of INDEXING data is rearranged in an order according to the column used for indexing
+        Non clustered :
+            Data rearrangement will not be done , but the indexing info collected on this data will be ordered
+        Heap
+
 
 
 
