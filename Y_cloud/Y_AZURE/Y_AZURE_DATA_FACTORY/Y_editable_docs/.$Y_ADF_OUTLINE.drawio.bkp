@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
   <diagram name="Page-1" id="BqMWQcpnarDLtOjDx7Me">
-    <mxGraphModel dx="2164" dy="1976" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2394" dy="1834" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -425,16 +425,16 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="1pKOWPdrgFphoMtvFS82-148" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Storage_Azure_Files.svg;" vertex="1" parent="1">
-          <mxGeometry x="-120" y="1316.19" width="81" height="65.81" as="geometry" />
+          <mxGeometry x="-230" y="4305.1900000000005" width="81" height="65.81" as="geometry" />
         </mxCell>
         <mxCell id="1pKOWPdrgFphoMtvFS82-149" value="Cloud" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="-140" y="1190" width="120" height="80" as="geometry" />
+          <mxGeometry x="-250" y="4179" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="1pKOWPdrgFphoMtvFS82-150" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#DF8C42;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam2.oracle_db;" vertex="1" parent="1">
-          <mxGeometry x="-110" y="1100" width="64" height="74" as="geometry" />
+          <mxGeometry x="-220" y="4089" width="64" height="74" as="geometry" />
         </mxCell>
         <mxCell id="1pKOWPdrgFphoMtvFS82-151" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.users.on_premises_user;" vertex="1" parent="1">
-          <mxGeometry x="-110" y="990" width="90" height="80" as="geometry" />
+          <mxGeometry x="-220" y="3979" width="90" height="80" as="geometry" />
         </mxCell>
         <mxCell id="1pKOWPdrgFphoMtvFS82-152" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.users.on_premises_user;" vertex="1" parent="1">
           <mxGeometry x="935" y="1024" width="90" height="80" as="geometry" />
@@ -522,7 +522,7 @@
             <mxPoint x="434" y="4440" as="sourcePoint" />
             <mxPoint x="484" y="4390" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="114" y="4335" />
+              <mxPoint x="114" y="4355" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -531,7 +531,7 @@
             <mxPoint x="434" y="4440" as="sourcePoint" />
             <mxPoint x="484" y="4390" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="704" y="4335" />
+              <mxPoint x="704" y="4355" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -552,6 +552,30 @@
             <mxPoint x="320" y="4150" as="sourcePoint" />
             <mxPoint x="370" y="4100" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="1pKOWPdrgFphoMtvFS82-176" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.users.on_premises_user;" vertex="1" parent="1">
+          <mxGeometry x="1021" y="3979" width="90" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="1pKOWPdrgFphoMtvFS82-177" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#DF8C42;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam2.oracle_db;" vertex="1" parent="1">
+          <mxGeometry x="1021" y="4089" width="64" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="1pKOWPdrgFphoMtvFS82-178" value="Cloud" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="991" y="4179" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="1pKOWPdrgFphoMtvFS82-179" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Storage_Azure_Files.svg;" vertex="1" parent="1">
+          <mxGeometry x="1011" y="4305.1900000000005" width="81" height="65.81" as="geometry" />
+        </mxCell>
+        <mxCell id="1pKOWPdrgFphoMtvFS82-180" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.users.on_premises_user;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="1010" width="90" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="1pKOWPdrgFphoMtvFS82-181" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#DF8C42;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam2.oracle_db;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="1120" width="64" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="1pKOWPdrgFphoMtvFS82-182" value="Cloud" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="-140" y="1210" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="1pKOWPdrgFphoMtvFS82-183" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Storage_Azure_Files.svg;" vertex="1" parent="1">
+          <mxGeometry x="-120" y="1336.19" width="81" height="65.81" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
