@@ -5,17 +5,29 @@ ss=SparkSession.builder.getOrCreate()
 ss.conf.set("spark.sql.streaming.schemaInference", True)
 read_stream_df =    ss.readStream.format("csv")\
                     .options(header = True,delimiter = ",")\
-                    .load("/home/pd/Documents/Y_DATA/Y_INPUT_DATA/Y_CSV_DATA/")
+                    .load("file:///home/yv1/Documents/y_test_folder/y_input/")
 
 transform_df = read_stream_df.withColumn("new_column",read_stream_df['id']+2)
 
-writing_df = transform_df.writeStream \
-                .format("csv") \
-                .option("path", "/home/pd/Documents/Y_DATA/Y_OUTPUT_DATA/Y_CSV_DATA") \
-                .option("checkpointLocation","checkpoint_dir") \
-                .outputMode("append") \
+writing_df =    transform_df.writeStream\
+                .format("csv")\
+                .option("path", "file:///home/yv1/Documents/y_test_folder/y_output/")\
+                .option("checkpointLocation","file:///home/yv1/Documents/y_test_folder/y_checkpoint/")\
+                .outputMode("append")\
                 .start().awaitTermination()
 
+
+
+############################### To read while the above quer is running ############################################
+
+from pyspark.sql import SparkSession
+
+ss1=SparkSession.builder.getOrCreate()
+
+ss1.conf.set("spark.sql.streaming.schemaInference", True)
+df= ss1.read.format("csv").options(delimiter = ",").load("file:///home/yv1/Documents/y_test_folder/y_output/")
+df_rs= ss1.readStream.format("csv").options(delimiter = ",").load("file:///home/yv1/Documents/y_test_folder/y_output/")
+df_rs.writeStream.outputMode("append").format("console").start().awaitTermination()
 
 
 
