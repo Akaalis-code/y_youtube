@@ -1,0 +1,59 @@
+1 - Create sample data frames  
+2 - Show dataframes 
+3 - select only few columns
+4 - Alias column names
+5 - Filter Columns 
+6 - Joins of dataframes
+7 - Aggregate Functions
+
+
+################## Pyspark setup ## Start ########################################################
+
+1)  Inside vitualbox , a dedicated ubuntu OS is setup for pyspark teaching
+
+2)  Ubuntu OS already comes with a python , OS deosnt allow PIP to install any libraries into this python ENV
+    may be to keep OS python safe from external changes as OS might be dependent on this python.
+
+3)  Use either "VirtualEnvironment" or "venv" or "pipenv" which ever is available for you or 
+    can be installed from "apt" 
+
+4)  I used venv , below is the setup :
+        > sudo apt install python3.12-venv          ## To install venv into your system
+        > python3 -m venv my_env                    ## Create an vitual env 
+        > cd my_env/bin/                            ## Your activate and deactivate files for venv are present here
+        > source activate                           ## Activate the venv "my_env" 
+        (my_env) > deactivate                       ## This a shell function inside activate file , to comeout of venv
+
+5)  We need JAVA installed SYSTEM wide for pyspark to work .
+        > JAVA -version                             ## To check if JAvA already exists or not 
+        > sudo apt install openjdk-21-jre-headless  ## If not there already choose a appropriate version and install as mentioned
+
+6)  Next setup "JAVA_HOME" environment variable in ".bashrc" file , 
+    You can find java installed location by below command
+        > which java
+
+7)  After finding the java installed path add below two lines in ".bashrc" file in home folder
+        JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64/
+        PATH=$PATH:$JAVA_HOME/bin
+
+8)  At this point you can run "pyspark" command and run spark code in pyspark shell line by line
+
+9)  For better visualization I am going to install "JUPYTER" notebooks
+        (my_venv) > pip install jupyter             ## Install JUPYTER inside your my_venv using pip
+        (my_venv) > jupyter notebook                ## To start Jupyter Notebook server , open "http://localhost:8888/" in any browser
+        (my_venv) > ctrl + c                        ## To stop Jupyter Notebook server
+        
+################## Pyspark setup ## End ########################################################
+
+from pyspark.sql import SparkSession
+
+ss=SparkSession.builder.getOrCreate()
+
+students_df = ss.createDataFrame( [(1,'harish','A')  , (2,'venkata rama raju','A') , (3,'rajesh','B')]  ,  ('ID','name','section') )
+results_df  = ss.createDataFrame( [(1,'physics',94),(2,'maths',95),(1,'maths',90)]  ,  ('ID','subject','marks_scored') )
+
+students_df.show()
+results_df.display()
+
+
+
