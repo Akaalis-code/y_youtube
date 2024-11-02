@@ -49,17 +49,19 @@ from pyspark.sql import SparkSession
 
 ss=SparkSession.builder.getOrCreate()
 
-students_df = ss.createDataFrame( [(1,'harish','A')  , (2,'venkata rama raju','A') , (3,'rajesh','B')]  ,  ('ID','name','section') )
-results_df  = ss.createDataFrame( [(1,'physics',94),(2,'maths',95),(1,'maths',90)]  ,  ('ID','subject','marks_scored') )
 
-students_df.show()
-results_df.display()
+y_sales folder
+    2023 folder
+        mo=11.txt
+        mo=12.txt
+    2024 folder
+        mo=01.txt
+        mo=02.txt
+
+############ CSV file read ## start ###################
+
+df_my_sales_data = ss.format('csv').read('/home/yvb/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_datafiles/y_csv_files')
 
 
-############ JSON file read ## start ###################
-
-df_json = ss.format('json').read('/home/yvb/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_datafiles/y_json_files/y_json_file1.json')
-
-############ JSON file read ## end ###################
 
 
