@@ -25,7 +25,7 @@
         (my_env) > deactivate                       ## This a shell function inside activate file , to comeout of venv
 
 5)  We need JAVA installed SYSTEM wide for pyspark to work .
-        > JAVA -version                             ## To check if JAvA already exists or not 
+        > JAVA -version                             ## To check if JAVA already exists or not 
         > sudo apt install openjdk-21-jre-headless  ## If not there already choose a appropriate version and install as mentioned
 
 6)  Next setup "JAVA_HOME" environment variable in ".bashrc" file , 
@@ -55,5 +55,11 @@ results_df  = ss.createDataFrame( [(1,'physics',94),(2,'maths',95),(1,'maths',90
 students_df.show()
 results_df.display()
 
+
+############ JSON file read ## start ###################
+
+df_json = ss.format('json').read('/home/yvb/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_datafiles/y_json_files/y_json_file1.json')
+
+############ JSON file read ## end ###################
 
 
