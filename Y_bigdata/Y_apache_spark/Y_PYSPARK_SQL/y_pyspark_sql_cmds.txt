@@ -16,6 +16,9 @@ SPARK -->> 3.x version
         ss=SparkSession.builder.appName('youtube_teaching').getOrCreate()
         ss.sparkContext.uiWebUrl
 
+4) To find out the session ids of your spark sessions 
+       ss.sparkContext.applicationId
+    
 ############ Install PYSPARK and find out where the library is installed in ## END ###################################################################
 
 

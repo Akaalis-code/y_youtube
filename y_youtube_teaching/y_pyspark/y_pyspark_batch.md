@@ -1,11 +1,14 @@
 # PLAN FOR THIS VIDEO
-    1- Read data from CSV 
-    2- Show dataframes 
-    3- select only few columns
-    4- Alias column names
-    5- Filter Columns 
-    6- Aggregate Functions
-    7- Joins of dataframes
+    1- Intro of SPARK
+    2- Pyspark setup on local machine
+    3- Coding topics in pyspark
+        1- Read data from CSV 
+        2- Show dataframes 
+        3- select only few columns
+        4- Alias column names
+        5- Filter Columns 
+        6- Aggregate Functions
+        7- Joins of dataframes
 
 
 
@@ -13,6 +16,14 @@
 
 
 
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+# INTRO of spark 
+<img src="./y_resources/y_computers.svg" alt="Pool of computers" width="1000"/>
+<br><br><br><br><br><br><br><br><br><br><br>
+<img src="./y_resources/y_spark_architechture.png" alt="Spark architechture" width="1000"/>
 
 
 
