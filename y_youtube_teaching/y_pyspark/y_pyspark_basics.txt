@@ -1,17 +1,18 @@
-1 - Create sample data frames  
+1 - Read data from CSV 
 2 - Show dataframes 
 3 - select only few columns
 4 - Alias column names
 5 - Filter Columns 
-6 - Joins of dataframes
-7 - Aggregate Functions
+6 - Aggregate Functions
+7 - Joins of dataframes
+
 
 
 ################## Pyspark setup ## Start ########################################################
 
 1)  Inside vitualbox , a dedicated ubuntu OS is setup for pyspark teaching
 
-2)  Ubuntu OS already comes with a python , OS deosnt allow PIP to install any libraries into this python ENV
+2)  Ubuntu OS already comes with a python , OS doesnt allow PIP to install any libraries into this python ENV
     may be to keep OS python safe from external changes as OS might be dependent on this python.
 
 3)  Use either "VirtualEnvironment" or "venv" or "pipenv" which ever is available for you or 
@@ -45,9 +46,7 @@
         
 ################## Pyspark setup ## End ########################################################
 
-from pyspark.sql import SparkSession
 
-ss=SparkSession.builder.getOrCreate()
 
 
 y_sales folder
@@ -58,10 +57,264 @@ y_sales folder
         mo=01.txt
         mo=02.txt
 
-############ CSV file read ## start ###################
-
-df_my_sales_data = ss.format('csv').read('/home/yvb/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_datafiles/y_csv_files')
 
 
+
+#################################### CSV file read
+
+
+from pyspark.sql import SparkSession
+ss=SparkSession.builder.appName('youtube_teaching').getOrCreate()
+
+
+from pyspark.sql.types import *
+my_schema = StructType([
+                            StructField("col_company", StringType()) ,
+                            StructField("col_product", StringType()) ,
+                            StructField("col_number_of_items", IntegerType()) ,
+                            StructField("col_sales", IntegerType()),
+                        ])
+
+
+df_my_sales_data =  ss.read.options(header=True , recursiveFileLookup = True )\
+                    .csv('/home/yvb/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_datafiles/y_csv_files/*')
+
+
+df_my_sales_data.show()
+
+
+
+###########################################################################################################################
+#################################### Select only few columns ##############################################################
+###########################################################################################################################
+
+                                                    select  col_company ,
+                                                            col_sales
+                                                    from df_my_sales_data
+
+
+
+df_my_sales_data.select(
+                            'col_company' , 
+                            'col_sales'
+                        ).show()
+
+df_my_sales_data.select(
+                            df_my_sales_data['col_company'] , 
+                            df_my_sales_data['col_sales']
+                        ).show()
+
+df_my_sales_data.select(
+                            df_my_sales_data.col_company , 
+                            df_my_sales_data.col_sales
+                        ).show()
+
+
+from pyspark.sql.functions import col
+df_my_sales_data.select(
+                            col('col_company'),
+                            col('col_sales')
+                        ).show()
+
+df_my_sales_data.select(
+                            df_my_sales_data[1] , 
+                            df_my_sales_data[2]
+                        ).show()
+
+
+df_my_sales_data.select(
+                            df_my_sales_data.columns[0:3]
+                        ).show()
+
+
+
+
+
+
+
+
+
+
+###########################################################################################################################
+#################################### alias columns  #######################################################################
+###########################################################################################################################
+ 
+                                                select  col_company as your_alias_name,
+                                                        col_sales
+                                                from df_my_sales_data
+
+
+
+df_my_sales_data.select(
+                            df_my_sales_data['col_company'].alias('your_alias_name'), 
+                            df_my_sales_data['col_sales']
+                        ).show()
+
+df_my_sales_data.select(
+                            df_my_sales_data.col_company.alias('your_alias_name') , 
+                            df_my_sales_data.col_sales
+                        ).show()
+
+
+from pyspark.sql.functions import col
+df_my_sales_data.select(
+                            col('col_company').alias('your_alias_name'),
+                            col('col_sales')
+                        ).show()
+
+df_my_sales_data.select(
+                            df_my_sales_data[1].alias('your_alias_name') , 
+                            df_my_sales_data[2]
+                        ).show()
+
+
+
+
+
+###########################################################################################################################
+####################################  Where clause  #######################################################################
+###########################################################################################################################
+ 
+                                                select  *
+                                                from df_my_sales_data
+                                                where col_company = 'C1'
+                                                  and (col_sales > 100) or ( col_number_of_items > 10 )
+
+
+
+
+df_my_sales_data.filter( col("col_company") == 'C1' ).show()
+
+
+df_my_sales_data.filter( 
+                            ( col("col_company") == 'C1' ) &
+                            ( ( col("col_sales") > 100 ) | ( col("col_number_of_items") > 10 ) )
+                        ).show()
+
+
+
+df_my_sales_data.where( 
+                            ( col("col_company") == 'C1' ) &
+                            ( ( col("col_sales") > 100 ) | ( col("col_number_of_items") > 10 ) )
+                        ).show()
+
+
+
+###########################################################################################################################
+####################################  Where clause  #######################################################################
+###########################################################################################################################
+ 
+                                                select  *
+                                                from df_my_sales_data
+                                                where col_company = 'C1'
+                                                  and (col_sales > 100) or ( col_number_of_items > 10 )
+
+
+
+
+df_my_sales_data.filter( col("col_company") == 'C1' ).show()
+
+
+df_my_sales_data.filter( 
+                            ( col("col_company") == 'C1' ) &
+                            ( ( col("col_sales") > 100 ) | ( col("col_number_of_items") > 10 ) )
+                        ).show()
+
+
+
+df_my_sales_data.where( 
+                            ( col("col_company") == 'C1' ) &
+                            ( ( col("col_sales") > 100 ) | ( col("col_number_of_items") > 10 ) )
+                        ).show()
+
+
+
+
+
+
+
+###########################################################################################################################
+####################################  AGGREGATE FUNCTIONS  ################################################################
+###########################################################################################################################
+ 
+                                                select  col_company , 
+                                                        AGG(col_sales) , 
+                                                        AGG(col_number_of_items)
+                                                from df_my_sales_data
+                                                group by col_company
+                                                order by col_company ASC
+
+
+
+AGG()  ---->>>>  sum(), avg(), max(), min(), and count()
+
+
+
+df_my_sales_data.groupBy(col("col_company")).sum(col("col_sales")).show()
+
+
+from pyspark.sql.functions import col,asc,desc
+df_my_sales_data.groupBy("col_company").\
+                sum("col_sales","col_number_of_items").\
+                orderBy(col("col_company").desc()).\
+                show()
+
+
+
+
+
+
+###########################################################################################################################
+####################################  JOINS FUNCTIONS  ################################################################
+###########################################################################################################################
+ 
+                                                select  *
+                                                from df_my_sales_data YOUR_JOIN df_test
+                                                  on col_company = tst_company and
+                                                     col_product = tst_product
+
+
+
+## creating df_test
+    my_schema = StructType([
+                                StructField("tst_company", StringType()) ,
+                                StructField("tst_product", StringType()) ,
+                                StructField("tst_number_of_items", IntegerType()) ,
+                                StructField("tst_sales", IntegerType()),
+                            ])
+    df_test = ss.createDataFrame( [('C1','P2',57,23424),('C20','P2',57,23424)]  ,  my_schema)
+    df_test.show()
+
+
+
+df_my_sales_data.join(  df_test ,\
+                        (
+                            (col("col_company") == col("tst_company")) & \
+                            (col("col_product") == col("tst_product"))\
+                        ),\
+                        "inner"
+                     )\
+.show()
+
+
+
+
+df_my_sales_data.join(  df_test ,\
+                        (
+                            (col("col_company") == col("tst_company")) & \
+                            (col("col_product") == col("tst_product"))\
+                        ),\
+                        "full"
+                     )\
+.show()
+
+
+
+from pyspark.sql.functions import lit
+df_my_sales_data.join(  df_test ,\
+                          (lit(1)==lit(1)),\
+                        "cross"
+                     )\
+.show()
 
 
