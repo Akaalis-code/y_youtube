@@ -9,26 +9,40 @@
         5- Filter Columns 
         6- Aggregate Functions
         7- Joins of dataframes
-
-
-
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 # INTRO of spark 
+
+<br>
 <img src="./y_resources/y_computers.svg" alt="Pool of computers" width="1000"/>
-<br><br><br><br><br><br><br><br><br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <img src="./y_resources/y_spark_architechture.png" alt="Spark architechture" width="1000"/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 ###########################################################################################################################
 # Pyspark setup ## Start 
 ###########################################################################################################################
@@ -49,7 +63,7 @@
         (my_env) > deactivate                       ## This a shell function inside activate file , to comeout of venv
 
 
-5)  We need JAVA installed SYSTEM wide for pyspark to work .
+5)  We need JAVA installed SYSTEM wide for pyspark to work . open new terminal window and check as below
 
         > JAVA -version                             ## To check if JAVA already exists or not 
         > sudo apt install openjdk-21-jre-headless  ## If not there already choose a appropriate version and install as mentioned
@@ -60,14 +74,21 @@
 
         > which java
 
-7)  After finding the java installed path add below two lines in ".bashrc" file in home folder
+7)  After finding the java installed path add JAVA home location to PATH variable , follow as below
 
+        >nano ~/.bashrc                                 #nano is command line editor , ~ symbol takes you to home folder
+
+        ##Add Below two lines in .bashrc file
         JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64/
         PATH=$PATH:$JAVA_HOME/bin
 
-8)  At this point you can run "pyspark" command and run spark code in pyspark shell line by line
+8)  Now Install PYSPARK library in your python virtual environment
 
-9)  For better visualization I am going to install "JUPYTER" notebooks
+        >pip install pyspark
+
+9)  At this point you can run "pyspark" command and run spark code in pyspark shell line by line
+
+10) For better visualization I am going to install "JUPYTER" notebooks 
 
         (my_venv) > pip install jupyter             ## Install JUPYTER inside your my_venv using pip
         (my_venv) > jupyter notebook                ## To start Jupyter Notebook server , open "http://localhost:8888/" in any browser
@@ -77,17 +98,16 @@
 # Pyspark setup ## End 
 ###########################################################################################################################
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-
-
-
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br>
 ###########################################################################################################################
 ## CSV file read ##
 ###########################################################################################################################
@@ -123,7 +143,16 @@
     df_my_sales_data.show()
 
 
-<br><br><br><br><br><br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ###########################################################################################################################
 ## Select only few columns ##
 ###########################################################################################################################
@@ -168,14 +197,16 @@
                             ).show()
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-
-
-
-
-
-
-<br><br><br><br><br><br><br><br>
 ###########################################################################################################################
 ## alias columns  ##
 ###########################################################################################################################
@@ -210,10 +241,16 @@
                             ).show()
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-
-
-<br><br><br><br><br><br><br><br>
 ###########################################################################################################################
 ##  Where clause  ##
 ###########################################################################################################################
@@ -243,10 +280,16 @@
                             ).show()
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-
-
-<br><br><br><br><br><br><br><br>
 ###########################################################################################################################
 ##  Filter clause  ##
 ###########################################################################################################################
@@ -276,13 +319,16 @@
                             ).show()
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-
-
-
-
-
-<br><br><br><br><br><br><br><br>
 ###########################################################################################################################
 ##  AGGREGATE FUNCTIONS  ##
 ###########################################################################################################################
@@ -310,13 +356,16 @@ AGG()  ---->>>>  sum(), avg(), max(), min(), and count()
                     show()
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-
-
-
-
-
-<br><br><br><br><br><br><br><br>
 ###########################################################################################################################
 ##  JOINS FUNCTIONS  ##
 ###########################################################################################################################
