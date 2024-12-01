@@ -214,7 +214,7 @@ Solution given by WINDOW functions :: Even though you are selecting multiple col
 
     from pyspark.sql.window import Window
     from pyspark.sql.functions import *
-    windowSpec  = Window.partitionBy("col-A").orderBy("col-B")
+    windowSpec  = Window.partitionBy("col-A").orderBy("col-B", ascending = [True])
 
 1) Row number over certain window :
 

@@ -1,3 +1,0 @@
-col_company,col_product,col_number_of_items,col_sales
-C3,P2,30,210
-

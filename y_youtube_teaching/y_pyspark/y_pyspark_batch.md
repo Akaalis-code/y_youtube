@@ -22,7 +22,9 @@
 # INTRO of spark 
 
 <br>
+
 <img src="./y_resources/y_computers.svg" alt="Pool of computers" width="1000"/>
+
 <br>
 <br>
 <br>
@@ -32,7 +34,9 @@
 <br>
 <br>
 <br>
+
 <img src="./y_resources/y_spark_architechture.png" alt="Spark architechture" width="1000"/>
+
 <br>
 <br>
 <br>
