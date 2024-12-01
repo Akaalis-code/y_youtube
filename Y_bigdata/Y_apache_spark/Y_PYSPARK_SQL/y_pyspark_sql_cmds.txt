@@ -13,9 +13,12 @@ SPARK -->> 3.x version
 
     After your SparkSession is running , execute below command inside your python terminal
         from pyspark.sql import SparkSession
-        ss=SparkSession.builder.getOrCreate()
+        ss=SparkSession.builder.appName('youtube_teaching').getOrCreate()
         ss.sparkContext.uiWebUrl
 
+4) To find out the session ids of your spark sessions 
+       ss.sparkContext.applicationId
+    
 ############ Install PYSPARK and find out where the library is installed in ## END ###################################################################
 
 
@@ -62,8 +65,12 @@ SPARK -->> 3.x version
  
  6) NARROW and WIDE transformations :-
 
-        
 
+
+7) Filters working concepts
+    Predicate Pushdown
+    Projection Pushdown
+    Partition pruning
 ##################### Quick Theoritical concepts ## START ###################################################################
 
 
@@ -78,6 +85,18 @@ SPARK -->> 3.x version
     ss=SparkSession.builder.getOrCreate()
     students_df=ss.createDataFrame( [(1,'rama','physics'),(2,'raju','maths'),(1,'rama','maths')]  ,  ('ID','name','subject'))
     results_df=ss.createDataFrame( [(1,'physics',94),(2,'maths',95),(1,'maths',90)]  ,  ('ID','subject','marks_scored'))
+
+
+
+    ## Incase if schema needs to be explicitly defined follow as below
+        from pyspark.sql.types import *
+        my_schema = StructType([
+                                    StructField("f1", StringType(), True) ,
+                                    StructField("languagesSkills", ArrayType(StringType())),
+                                    StructField("count", IntegerType()),
+                                ])
+        my_dataframe = ss.createDataFrame(data=data, schema=schema)
+
 
 ##################### DATA SETUP ## END ###################################################################
 
@@ -118,8 +137,8 @@ SPARK -->> 3.x version
             df1.select(df1["A-col"],df1["B-col"]).show()
 
             df1.select(df1.A-col,df1.B-col).show()       ---->>> Dont use this syntax
-            Reason : Even though this  " df1.select(df1.A-col,df1.B-col).show() " works for simple column names ,
-                    for A-col it gets confused as if to do A minus col so its better to avoid this syntax
+                Reason :    Even though this  " df1.select(df1.A-col,df1.B-col).show() " works for simple column names ,
+                            for A-col it gets confused as if to do A minus col so its better to avoid this syntax
         
     1.2) By using col() function
 
@@ -127,7 +146,7 @@ SPARK -->> 3.x version
             df1.select(col("A-col"),col("B-col")).show()
 
     1.3) select columns by index
-
+            df1.select(df1[0] , df1[0])
             df1.select(df1.columns[2:4]).show(3)
 
     1.4) Omit some columns from data frame 
@@ -195,7 +214,7 @@ Solution given by WINDOW functions :: Even though you are selecting multiple col
 
     from pyspark.sql.window import Window
     from pyspark.sql.functions import *
-    windowSpec  = Window.partitionBy("col-A").orderBy("col-B")
+    windowSpec  = Window.partitionBy("col-A").orderBy("col-B", ascending = [True])
 
 1) Row number over certain window :
 
@@ -373,7 +392,8 @@ Suppose if we have two dataframes df1 and df2
     df1.join(df2,((<condition 1>)&(<condition n>)),"right")
 
 ###### FULL OUTER JOIN
-    Returns all rows from both DataFrames, including "satisfied and non satisfied conditions".
+    Returns all rows from both DataFrames, while rows satisfying the conditions will come in same row
+    while unmatched form both tables will be displayed along with null in other tables display side
 
     df1.join(df2,((<condition 1>)&(<condition n>)),"full")
 
@@ -398,7 +418,26 @@ Suppose if we have two dataframes df1 and df2
 
 
 
-##################### FILE READ CORRUPT RECORD CATCHING ## START #################################################################################################
+
+##################### File reading ## START #################################################################################################
+### CSV files
+spark.read.options(delimiter="," , header=True ).csv( path ) 
+
+
+### JSON files 
+spark.read.option("multiline","true").json( path ) 
+
+
+### Some other otions that you can include in options segment :
+    recursiveFileLookup = True          ## In case if your files are in multi depth child folders and you want to read all
+    pathGlobFilter = "*.parquet"        ## If you want spark read to only read files which match a particular pattern 
+    multiline = True                    ## In case if one row is spanned into multiple lines in your files
+    inferSchema = True
+##################### File reading ## End #################################################################################################
+
+
+
+##################### CORRUPT RECORD CATCHING ## START #################################################################################################
 1) Any file type data that you have , there could be some rows where number of data columns are more than column headers
    Those data rows are corrupt data rows .
 2) Spark provides a automated way to catch those corrupt rows

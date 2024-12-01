@@ -1,30 +1,60 @@
+import os
 from pyspark.sql import SparkSession
+ss=SparkSession.builder.appName('app_for_struct_stream').getOrCreate()
 
-ss=SparkSession.builder.getOrCreate()
 
 ss.conf.set("spark.sql.streaming.schemaInference", True)
 read_stream_df =    ss.readStream.format("csv")\
-                    .options(header = True,delimiter = ",")\
-                    .load("/home/pd/Documents/Y_DATA/Y_INPUT_DATA/Y_CSV_DATA/")
+                    .options(header = True,delimiter = ",", recursiveFileLookup = True )\
+                    .load("file://"+os.environ['my_home_directory']+"/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_datafiles/y_csv_files/y_sales")
 
-transform_df = read_stream_df.withColumn("new_column",read_stream_df['id']+2)
 
-writing_df = transform_df.writeStream \
-                .format("csv") \
-                .option("path", "/home/pd/Documents/Y_DATA/Y_OUTPUT_DATA/Y_CSV_DATA") \
-                .option("checkpointLocation","checkpoint_dir") \
-                .outputMode("append") \
+from pyspark.sql.functions import udf
+@udf
+def func_date_time():
+    return str(datetime.now())
+
+
+from datetime import datetime,timedelta
+from pyspark.sql.functions import *
+transform_df = read_stream_df.withColumn("Read_time",func_date_time())
+
+
+writing_df =    transform_df.writeStream\
+                .format("csv")\
+                .options(header = True,delimiter = ",")\
+                .option("path", "file://"+os.environ['my_home_directory']+"/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_datafiles/y_output_of_ss/")\
+                .option("checkpointLocation","file://"+os.environ['my_home_directory']+"/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_datafiles/y_checkpointing_location/")\
+                .outputMode("append")\
                 .start().awaitTermination()
 
+
+
+############################### To read while the above quer is running ############################################
+
+from pyspark.sql import SparkSession
+
+ss1=SparkSession.builder.getOrCreate()
+
+ss1.conf.set("spark.sql.streaming.schemaInference", True)
+df= ss1.read.format("csv").options(delimiter = ",").load("file:///home/yv1/Documents/y_test_folder/y_output/")
+df_rs= ss1.readStream.format("csv").options(delimiter = ",").load("file:///home/yv1/Documents/y_test_folder/y_output/")
+df_rs.writeStream.outputMode("append").format("console").start().awaitTermination()
 
 
 
 ########################### Code for visualising data ### START ###############################################################################
 from pyspark.sql import SparkSession as sp
-ss=sp.builder.getOrCreate()
+ss=sp.builder.appName('y_app_for_reading').getOrCreate()
 
-df=ss.read.csv("/home/pd/Documents/Y_DATA/Y_OUTPUT_DATA/Y_CSV_DATA/*.csv")
-df.show()
+
+ss.conf.set("spark.sql.streaming.schemaInference", True)
+
+
+df= ss.read\
+    .options(header = True,delimiter = ",")\
+    .csv("/home/yvm/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_datafiles/y_output_of_ss/").orderBy("Read_time", ascending = [True])
+df.show(truncate=False)
 
 
 ########################### Code for visualising data ### END ###############################################################################
