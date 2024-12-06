@@ -19,9 +19,16 @@
         > sudo apt install python3-tk                 ## If not there use APT to install it 
 
 
-
-
 Python 3.7.6
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import tkinter      ## To check if its properly installed or not 
->>>
+
+
+
+## Some tools of matplotlib
+
+    >>> import matplotlib
+    >>> print(matplotlib.get_backend())  ## To get info of what backend is matplotlib using for interactive window
+                                            As of now its using 'tkagg'
+
+
