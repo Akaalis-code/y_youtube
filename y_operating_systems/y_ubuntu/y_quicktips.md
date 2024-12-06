@@ -12,3 +12,12 @@
         > sudo apt remove <package_name>        # This only uninstalls the package but any local confguratons will stay
         > sudo apt purge <package_name>         # This will remove any pre existing config files 
         > sudo apt autoremove                   # This will remove any unused dependent libraries that were auto installed
+
+
+## Get file or folder sizes 
+    
+    Use "du" command which is short for (disk usage)
+    To get how to use "du" command run below command
+        > du --help 
+    Generally if you want to find out size of any folder run below 
+        > du -sh folder_name           # 's' argument simplifies and summarizes the output 'h' isplays size in human readable form
