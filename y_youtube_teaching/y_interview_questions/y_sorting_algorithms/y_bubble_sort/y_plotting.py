@@ -1,4 +1,6 @@
 var_plot_file = 10
+#import matplotlib 
+#matplotlib.use('tkAgg') 
 
 import matplotlib.pyplot as pplt
 

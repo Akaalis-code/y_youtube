@@ -31,7 +31,7 @@ for i in range(0,var_len) :
             sorting_y[j] = sorting_y[j+1]
             sorting_y[j+1] = temp
         mth_plot(var_axis_X , sorting_y , var_traverse_color , var_bar_colors)
-        pplt.pause(.00000000000000000001)
+        pplt.pause(.01)
 
     var_bar_colors[(var_len-1)-i] = 'tab:green'
     var_traverse_color[(var_len-1)-i] = 'tab:green'
