@@ -10,9 +10,21 @@ A)  I think pyspark does come with light weight SPARK BINARIES enough to execute
 
 Clean later -->> Spark analogy pt in this file is 7 MB try reducing the size later /home/yvm/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_pyspark_batch.md
 
+
+
+
+
+---------------------------------------- Various tools -- start -------------------------------------------------------------
+
 PCB WAY -->> for 3d printing , CNC cutting PCB 
     In PCB manufacturing there are few ways of creation
         SMT - Surface mount technology
         THT - Through hole technology 
         HDI - High density interconnect
         BGA - Ball grid array
+
+
+Video Editing :
+    PICSART web based tool for AI enhaced removals 
+    
+---------------------------------------- Various tools -- start -------------------------------------------------------------
