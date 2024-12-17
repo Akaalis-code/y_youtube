@@ -28,3 +28,31 @@ Video Editing :
     PICSART web based tool for AI enhaced removals 
     
 ---------------------------------------- Various tools -- start -------------------------------------------------------------
+
+
+
+---------------------------------------- English -- start --------------------------------------------------------
+Speakers :
+    Christopher hitchens 
+    Jordan peterson
+
+vocabulary :
+    prevalent - widespread in a particular area or at a particular time
+    modus operandi - a particular way or method of doing something
+    frivolous - not having any serious purpose or value
+    republic - a state in which supreme power is held by the people and their elected representatives, 
+                and which has an elected or nominated president rather than a monarch.
+    Democracy vs republic - both are same except one change where in republic majorities power will be kept in check
+                            So that it does nt overshadow the minority 
+    India is a Sovereign Socialist Secular Democratic Republic
+
+    competent - having the necessary ability, knowledge, or skill to do something successfully
+    comprehend  - grasp mentally or understand
+    comprise - consist of ; be made up of
+
+    voracious - wanting or devouring great quantities of food
+    articulate - having or showing the ability to speak fluently and coherently
+    eloquent - fluent or persuasive in speaking or writing
+
+
+---------------------------------------- English -- End ---------------------------------------------------------

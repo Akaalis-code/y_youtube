@@ -33,3 +33,11 @@ git diffs
 
 
 ------ GIT controls from command prompt -- End ------------------------------
+
+
+# GIT MERGE VS GIT REBASE 
+   Merge is used to blend changes from one branch to another .
+   In this merge source branch can continue even after merging unless explicitly deleting the branch
+
+   Rebase is used similar to git merge but the source branch will be removed after merge,
+   by making target branch as the base for even source branch
