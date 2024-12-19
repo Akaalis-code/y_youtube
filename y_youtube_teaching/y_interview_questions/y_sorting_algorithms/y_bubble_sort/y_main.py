@@ -3,7 +3,7 @@ import numpy
 import random
 from y_plotting import *
 
-var_len = 3
+var_len = 30
 
 var_axis_X = numpy.linspace(0, var_len, num=var_len)
 var_y = [random.randint(0,var_len) for _ in range(0,var_len) ]
@@ -39,4 +39,3 @@ for i in range(0,var_len) :
 
 
 pplt.show()
-

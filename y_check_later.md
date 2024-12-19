@@ -29,7 +29,11 @@ Video Editing :
     
 ---------------------------------------- Various tools -- start -------------------------------------------------------------
 
-
+PYTHON :
+    iterator vs generator
+    closure and decorator 
+    Is there any performance improvement in list comprehension or just a compact way to write code
+    ZIP() function in for loops of python
 
 ---------------------------------------- English -- start --------------------------------------------------------
 Speakers :
