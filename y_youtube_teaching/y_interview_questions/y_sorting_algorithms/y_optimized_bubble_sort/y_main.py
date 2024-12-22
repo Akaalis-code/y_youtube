@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+#import matplotlib
+#matplotlib.use('TkAgg')
 
 # Initialize the same data for both axes
 data = np.random.randint(0, 100, size=50)
@@ -29,7 +31,7 @@ sorting_done2 = False
 def bubble_sort1(data):
     n = len(data)
     for i in range(n - 1):
-        for j in range(n - 1 - i):
+        for j in range(n - 1):
             if data[j] > data[j + 1]:
                 data[j], data[j + 1] = data[j + 1], data[j]
             yield data, j, j + 1, n - i - 1
@@ -40,7 +42,7 @@ def bubble_sort1(data):
 def bubble_sort2(data):
     n = len(data)
     for i in range(n - 1):
-        for j in range(n - 1):
+        for j in range(n - 1 -i ):
             if data[j] > data[j + 1]:
                 data[j], data[j + 1] = data[j + 1], data[j]
             yield data, j, j + 1, n - i - 1
@@ -108,7 +110,8 @@ def combined_bubble_sort(data1, data2):
         yield data1, data2
 
 # Create animation
-anim = FuncAnimation(fig, func=update_plot, frames=combined_bubble_sort(data1, data2), interval=1, repeat=False)
+anim = FuncAnimation(fig, func=update_plot, frames=combined_bubble_sort(data1, data2), interval=0, repeat=False ,cache_frame_data=False)
 
 # Display plot
+fig.tight_layout()
 plt.show()
