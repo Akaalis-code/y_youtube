@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 # Initialize the same data for both axes
-data = np.random.randint(0, 100, size=10)
+data = np.random.randint(0, 100, size=50)
 
 # Create copies of the data for both subplots
 data1 = data.copy()
@@ -108,7 +108,7 @@ def combined_bubble_sort(data1, data2):
         yield data1, data2
 
 # Create animation
-anim = FuncAnimation(fig, func=update_plot, frames=combined_bubble_sort(data1, data2), interval=100, repeat=False)
+anim = FuncAnimation(fig, func=update_plot, frames=combined_bubble_sort(data1, data2), interval=1, repeat=False)
 
 # Display plot
 plt.show()

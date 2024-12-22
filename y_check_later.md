@@ -11,6 +11,14 @@ A)  I think pyspark does come with light weight SPARK BINARIES enough to execute
 Clean later -->> Spark analogy pt in this file is 7 MB try reducing the size later /home/yvm/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_pyspark_batch.md
 
 
+--------------------------------------- CET -- start -------------------------------------------------------------
+PLASMA HOLDER MACHINE SHAPES :
+    Z Machine 
+    Tokamak
+    Stellarator
+--------------------------------------- CET -- end -------------------------------------------------------------
+
+
 
 
 
