@@ -20,4 +20,19 @@
     To get how to use "du" command run below command
         > du --help 
     Generally if you want to find out size of any folder run below 
-        > du -sh folder_name           # 's' argument simplifies and summarizes the output 'h' isplays size in human readable form
+        > du -sh folder_name           # 's' argument simplifies and summarizes the output 'h' displays size in human readable form
+
+
+
+
+
+## PROCESS vs SERVICE vs DAEMONS     -->> Subject to corrections 
+
+    PROCESS  = Any code that is running , either in background or in foreground . 
+               May it be small code snippets or entire applications
+
+    SERVICE  = A "PROCESS" whose purpose is to do some function and run continuously .
+               Typically but not necessarily are expected to run in Background.
+               Most SERVICES are invoked by "SYSTEM INIT" (system initialization process like SYSTEMD , SysVinit , Upstart)
+               
+    DAEMON   = A SERVICE which is more emphasized on running in the background like the ghost , hence the name .
