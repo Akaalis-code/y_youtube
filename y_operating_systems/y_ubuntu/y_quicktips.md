@@ -20,8 +20,8 @@
     To get how to use "du" command run below command
         > du --help 
     Generally if you want to find out size of any folder run below 
-        > du -sh folder_name           # 's' argument simplifies and summarizes the output 'h' displays size in human readable form
-
+        > du -sh <folder_name_or_path>        # 's' argument simplifies and summarizes the output 'h' displays size in human readable form
+        > du -sh *                            # '*' is used to get sizes of all files and folders under this folder
 
 
 
