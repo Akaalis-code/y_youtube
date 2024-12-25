@@ -11,6 +11,19 @@ A)  I think pyspark does come with light weight SPARK BINARIES enough to execute
 Clean later -->> Spark analogy pt in this file is 7 MB try reducing the size later /home/yvm/Documents/y_youtube/y_youtube_teaching/y_pyspark/y_pyspark_batch.md
 
 
+Q) Study about "ENUMARATOR vs ZIP" in python for looping 
+Q) Python multi threading vs multiprocessing and CPU Pooling through map reduce 
+    REF = https://www.youtube.com/watch?v=PJ4t2U15ACo&list=PLeo1K3hjS3uub3PRhdoCTY8BxMKSW7RjN
+
+
+
+CL) pyttsx3 - text to speech 
+    REF = https://www.youtube.com/watch?v=u6cmiBp1obc
+
+CL) openai whisper - speech recognizer
+
+CL) pocketsphinx for speech rcognizer offline working 
+
 --------------------------------------- CET -- start -------------------------------------------------------------
 PLASMA HOLDER MACHINE SHAPES :
     Z Machine 
