@@ -43,8 +43,11 @@
 
 ##### For Listening
 
-      0) Install "speechrecognition" library of python
+      0) Install "speechrecognition" library of python , it is dependent on "pyaudio" which is in turn dependent on "portaudio.h"
+         Note : None of the below packages have been checked by me for any security clearence 
 
+            > sudo apt-get install portaudio19-dev
+            > pip install pyaudio
             > pip install SpeechRecognition
       
       1) Install "pyttsx3" library of python 

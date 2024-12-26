@@ -24,6 +24,8 @@ CL) openai whisper - speech recognizer
 
 CL) pocketsphinx for speech rcognizer offline working 
 
+
+https://www.youtube.com/watch?v=SXsyLdKkKX0
 --------------------------------------- CET -- start -------------------------------------------------------------
 PLASMA HOLDER MACHINE SHAPES :
     Z Machine 

@@ -42,7 +42,7 @@ def mth_speak(para_text_to_be_spoken):
 
 for i in range(5):
     var_user_ask = input("--->>> : ")
-    var_user_ask = 'Respond in one sentence .'+ str(var_user_ask)
+    var_user_ask = 'Respond with concise answer .'+ str(var_user_ask)
     var_resp = mth_ask_for_response(str(var_user_ask))
     #print(var_resp['message']['content'])
     mth_speak(str(var_resp['message']['content']))
