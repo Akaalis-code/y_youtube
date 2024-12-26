@@ -41,7 +41,59 @@
 
 
 
+
+
+
+
+
+
 ##### For Listening
+
+	1) Install "whisper-mic" for live listening from mic .
+		Note - "whisper" is from "OPENAI" , but "whisper-mic" is developed by some individual developer 
+
+		> pip install whisper-mic
+
+		Below are DEBUG steps if above cmd raises issue :-
+			IF Problem from pyaudio:-
+				> sudo apt-get install portaudio19-dev
+				> pip install pyaudio
+			
+			If problem from python header :-
+				> sudo apt-get install python3-dev
+			
+			If from any build tools :-
+				> sudo apt install build-essential
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       0) Install "speechrecognition" library of python , it is dependent on "pyaudio" which is in turn dependent on "portaudio.h"
          Note : None of the below packages have been checked by me for any security clearence 

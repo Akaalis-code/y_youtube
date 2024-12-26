@@ -1,3 +1,13 @@
+########################### PIP related info ## START #####################################################################################
+
+To check where the pip installed the libraries :
+        > pip show <lib_name>
+To uninstall all pip installed libs :
+        > pip freeze | xargs pip uninstall -y
+
+########################### PIP related info ## START #####################################################################################
+
+
 
 ########################### LAMBDA , FILTER , MAP , REDUCE ## START #####################################################################################
 

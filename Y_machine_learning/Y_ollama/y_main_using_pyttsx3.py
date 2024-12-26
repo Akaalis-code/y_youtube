@@ -30,56 +30,11 @@
 
 
 
+# from whisper_mic import WhisperMic
 
-
-
-
-import whisper
-import pyaudio
-import numpy as np
-
-# Load the Whisper model
-model = whisper.load_model("base")
-
-# PyAudio parameters
-CHUNK = 1024
-FORMAT = pyaudio.paInt16
-CHANNELS = 1
-RATE = 16000
-
-# Initialize PyAudio
-p = pyaudio.PyAudio()
-
-# Open a stream to read from microphone
-stream = p.open(format=FORMAT,
-                channels=CHANNELS,
-                rate=RATE,
-                input=True,
-                frames_per_buffer=CHUNK)
-
-print("Listening...")
-
-try:
-    while True:
-        frames = []
-        for _ in range(0, int(RATE / CHUNK * 5)):  # Record for 5 seconds
-            data = stream.read(CHUNK)
-            frames.append(np.frombuffer(data, dtype=np.int16))
-        
-        audio_data = np.hstack(frames)
-        
-        # Perform speech recognition
-        result = model.transcribe(audio_data, fp16=False)
-        print("Transcript:", result["text"])
-
-except KeyboardInterrupt:
-    print("Stopped listening.")
-
-finally:
-    stream.stop_stream()
-    stream.close()
-    p.terminate()
-
+# mic = WhisperMic()
+# result = mic.listen()
+# print(result)
 
 
 # from ollama import chat
@@ -131,19 +86,24 @@ finally:
 #     return response
 
 
-# import speech_recognition
-# var_ear = speech_recognition.Recognizer()
-# with speech_recognition.Microphone() as var_mic: 
-#     #var_ear.adjust_for_ambient_noise(var_mic,duration = 0.2)
-#     audio_data = var_ear.listen(var_mic) 
-#     print("Recognizing...") 
-#     try: 
-#         text = var_ear.recognize_google(audio_data) 
-#         print(f"Recognized text: {text}") 
-#     except: 
-#         print(f" error; {e}")
+import speech_recognition
+var_ear = speech_recognition.Recognizer()
+var_ear.energy_threshold = 1568 
 
+with speech_recognition.Microphone() as var_mic: 
+    # var_ear.adjust_for_ambient_noise(var_mic,duration = 0.2)
+    while True:
+        try: 
+            print("listening...")
+            audio_data = var_ear.listen(var_mic) 
+            print("Recognizing...") 
+            text = var_ear.recognize_google(audio_data) 
+            print(f"Recognized text: {text}") 
+        except Exception as e: 
+            print(f" error; {e}")
 
+## Solution  at the end by Luban6887 
+    ## ref :- https://github.com/Uberi/speech_recognition/issues/100
 
 # for i in range(5):
 #     var_user_ask = input("--->>> : ")

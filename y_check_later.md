@@ -81,5 +81,6 @@ vocabulary :
     articulate - having or showing the ability to speak fluently and coherently
     eloquent - fluent or persuasive in speaking or writing
 
-
+    antithesis - 
+    rhetoric - 
 ---------------------------------------- English -- End ---------------------------------------------------------
