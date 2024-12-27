@@ -24,6 +24,23 @@
         > du -sh *                            # '*' is used to get sizes of all files and folders under this folder
 
 
+## Different ways of running shell files :
+
+    SET1 type of running:
+        sh     my_shell_file.sh              # Uses SHEEL INTERPRETER
+        bash   my_shell_file.sh              # Uses BOURNE AGAIN SHELL INTERPRETER 
+        ./     myshell_file.sh               # Uses Which ever INTERPRETER was mentioned inside file using SHABANG
+
+    SET2 type of running
+        .      my_shell_file.sh
+        source my_shell_file.sh
+
+    The first set of commands where explicit mentioning of which shell interpreters to use will create new SHELL SESSIONS
+    Where variables and functions defined in one SHELL SESSION will not be known to PARENT SHELL SESSION or others
+
+    Where as in the second set , the main SHELL SESSION where the cmd is beind run from , will stay as the SESSION
+    for running the cmds that are inside the my_shell_file.sh
+
 
 
 ## PROCESS vs SERVICE vs DAEMONS     -->> Subject to corrections 
