@@ -4,6 +4,11 @@ To check where the pip installed the libraries :
         > pip show <lib_name>
 To uninstall all pip installed libs :
         > pip freeze | xargs pip uninstall -y
+pip cache checking and purging
+        > pip cache dir
+        > pip cache info
+        > pip cache remove <pattern>
+        > pip cache purge
 
 ########################### PIP related info ## START #####################################################################################
 
