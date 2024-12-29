@@ -24,13 +24,26 @@ CL) openai whisper - speech recognizer
 
 CL) pocketsphinx for speech rcognizer offline working 
 
+CL) https://www.youtube.com/watch?v=SXsyLdKkKX0
 
-https://www.youtube.com/watch?v=SXsyLdKkKX0
+
+
 --------------------------------------- CET -- start -------------------------------------------------------------
-PLASMA HOLDER MACHINE SHAPES :
+NUCLEAR FUSION:
     Z Machine 
     Tokamak
     Stellarator
+
+ELECTRONICS :
+    SEMICONDUCTOR FABRICATION FACILITIES (FAB)
+        FOUP is a machine that carries waffers from one machine to another in FAB
+        Each SILICON WAFER has many Individual (INTEGRATED CIRCUITS or DIE or CHIPS)
+
+
+LIGHT MATTERS (Company):-   May be pioneer in PHOTONICS , Where the communication between components will be replaced by light 
+                            instead of electrons . In short replacing Circuits with fibre optics at nano scale.
+
+1x (Company):-  Promising in Humanoid robotics
 --------------------------------------- CET -- end -------------------------------------------------------------
 
 
