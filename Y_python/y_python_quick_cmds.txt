@@ -45,17 +45,7 @@ pip cache checking and purging
         newlist = [x for x in fruits if "a" in x]
         print(newlist)
 
-########################### LAMBDA , FILTER , MAP , REDUCE ## END #####################################################################################
-
-
-
-
-
-1) In python try "dir(<any_object>)" it will give out all dunder related variables for it 
-
-
-
-
+########################### LAMBDA , FILTER , MAP , REDUCE ## END ##############################################################
 
 
 
@@ -70,3 +60,13 @@ pip cache checking and purging
     with open("file.txt", "w") as f: 
         f.write("Hello World!!!")
 ########################### File handlers ## END #############################################################################
+
+
+
+
+########################### Random ## START #############################################################################
+
+1) "dir(<any_object>)" it will give out all dunder related variables for it 
+
+
+########################### Random ## END #############################################################################
