@@ -59,7 +59,7 @@
 				> sudo apt-get install portaudio19-dev
 				> pip install pyaudio
 			
-			If problem from python header :-
+			If problem from python header (python.h) :-
 				> sudo apt-get install python3-dev
 			
 			If from any build tools :-
@@ -99,6 +99,7 @@
          Note : None of the below packages have been checked by me for any security clearence 
 
             > sudo apt-get install portaudio19-dev
+            > sudo apt-get install python3-dev
             > pip install pyaudio
             > pip install SpeechRecognition
       

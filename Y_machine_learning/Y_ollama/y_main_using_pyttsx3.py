@@ -91,16 +91,18 @@ var_ear = speech_recognition.Recognizer()
 var_ear.energy_threshold = 1568 
 
 with speech_recognition.Microphone() as var_mic: 
-    # var_ear.adjust_for_ambient_noise(var_mic,duration = 0.2)
+    var_ear.adjust_for_ambient_noise(var_mic,duration = 0.2)
     while True:
         try: 
             print("listening...")
             audio_data = var_ear.listen(var_mic) 
             print("Recognizing...") 
+            print(audio_data)
             text = var_ear.recognize_google(audio_data) 
             print(f"Recognized text: {text}") 
         except Exception as e: 
             print(f" error; {e}")
+            var_ear = speech_recognition.Recognizer()
 
 ## Solution  at the end by Luban6887 
     ## ref :- https://github.com/Uberi/speech_recognition/issues/100
