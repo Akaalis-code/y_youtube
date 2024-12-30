@@ -19,12 +19,10 @@ Q) Python multi threading vs multiprocessing and CPU Pooling through map reduce
 
 CL) pyttsx3 - text to speech 
     REF = https://www.youtube.com/watch?v=u6cmiBp1obc
-
 CL) openai whisper - speech recognizer
-
 CL) pocketsphinx for speech rcognizer offline working 
-
 CL) https://www.youtube.com/watch?v=SXsyLdKkKX0
+CL) LANGCHAIN (HARRISON CHASE) , VECTOR DATABASES , AUTO GPT
 
 
 
