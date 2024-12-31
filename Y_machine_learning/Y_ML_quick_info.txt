@@ -22,3 +22,9 @@ Machine learning algorithms :
         Q learning
         Temporal learning
         Generative adversarial Networks
+
+
+
+
+
+AI AGENT = It can be thought of as sensors that senses the environment that we place it in .

@@ -23,6 +23,9 @@ CL) openai whisper - speech recognizer
 CL) pocketsphinx for speech rcognizer offline working 
 CL) https://www.youtube.com/watch?v=SXsyLdKkKX0
 CL) LANGCHAIN (HARRISON CHASE) , VECTOR DATABASES , AUTO GPT
+CL) AI AGENTS vs AI MODELS
+CL) RAG (Retrieval augmented generation)
+CL) Vector databses
 
 
 
