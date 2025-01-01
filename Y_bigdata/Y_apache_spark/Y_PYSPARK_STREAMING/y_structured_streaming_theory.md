@@ -13,3 +13,40 @@
 
 
 
+# Sources and Sinks
+
+    Sources can be = File source ,Socket Source ,Rate Source ,Rate Per Micro-Batch Source(format:rate-micro-batch) ,Kafka Source
+
+    Sinks are based on the output modes , mentioned as below :
+
+        | SINK TYPE         | OUTPUT MODE              |
+        |:-----------------:|:------------------------:|
+        | File sink         | Append                   |
+        | Memory Sink       | Append, Complete         |
+        | KAFKA Sink        | Append, Update, Complete |
+        | Console Sink      | Append, Update, Complete |
+        | Foreach Sink      | Append, Update, Complete |
+        | ForeachBatch Sink | Append, Update, Complete |
+
+
+# SCHEMA 
+
+    For structured streaming in every tutorial or documentation , info is like SCHEMA needs to be explicitly specified  
+    But when I tried , I set config like "spark.sql.streaming.schemaInference = True" and did not give any schema ,  
+    it worked fine.
+
+    Example :
+        ss.conf.set("spark.sql.streaming.schemaInference", True)
+        read_stream_df = ss.readStream.format("csv")\
+                        .options(header = True,delimiter = ",", recursiveFileLookup = True )\
+                        .load(path)
+
+
+# STREAMING options or config :
+
+    “maxFilesPerTrigger”
+
+
+CHECK POINTING
+WRITE AHEAD LOGS
+WATERMARKING
